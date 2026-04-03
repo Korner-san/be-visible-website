@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700;800&family=Nixie+One&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-nixie: "Nixie One", system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-paper: #fdfdfd;
+  --color-ink: #0a0a0a;
+  --color-surface-50: #f9f9f9;
+  --color-surface-100: #f2f2f2;
+  --color-surface-200: #e5e5e5;
+  --color-surface-300: #d4d4d4;
+  --color-surface-400: #a3a3a3;
+  --color-surface-500: #737373;
+
+  --color-border-subtle: rgba(10, 10, 10, 0.05);
+  --color-border-medium: rgba(10, 10, 10, 0.1);
+  --color-glass-white: rgba(255, 255, 255, 0.8);
+  --color-glass-black: rgba(10, 10, 10, 0.8);
+}
+
+@layer base {
+  body {
+    @apply bg-white text-ink font-sans selection:bg-ink selection:text-white antialiased;
+  }
+}
+
+.font-nixie {
+  font-family: var(--font-nixie);
+}
+
+.brutalist-border {
+  @apply border border-ink;
+}
+
+.premium-blur {
+  @apply backdrop-blur-xl bg-white/70 border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.04)];
+}
+
+.glass-dark {
+  @apply backdrop-blur-xl bg-black/40 border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.2)];
+}
+
+.section-container {
+  @apply max-w-7xl mx-auto px-6 md:px-12;
+}
+
+.inset-frame {
+  @apply border border-border-subtle bg-surface-50/50 rounded-[2rem] overflow-hidden;
+}
+
+.tonal-plane {
+  @apply bg-surface-50 border-y border-border-subtle;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
