@@ -545,16 +545,6 @@ export const Home = () => {
               className="max-w-4xl mx-auto text-center relative"
             >
               <ReadabilityGlow />
-              <div className="flex justify-center mb-20">
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                  className="relative"
-                >
-                  <div className="absolute inset-0 blur-2xl bg-ink/5 rounded-full" />
-                  <Hexagon size={64} outline className="text-ink/10 relative z-10" />
-                </motion.div>
-              </div>
               
               <h2 className="text-5xl md:text-8xl font-nixie text-ink leading-[0.9] mb-16 tracking-tighter">
                 The Platform <br />is Coming.
