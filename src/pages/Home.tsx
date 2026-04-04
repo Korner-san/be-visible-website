@@ -275,8 +275,56 @@ export const Home = () => {
           </div>
         </section>
 
+        {/* Screen 1.5: Philosophy Scroll (Bridge) */}
+        <section className="relative min-h-[120vh] bg-ink text-white flex items-center justify-center overflow-hidden">
+          <div className="absolute inset-0 opacity-20 pointer-events-none">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_1px,transparent_1px)] [background-size:24px_24px]" />
+            <Grainient 
+              color1="#000000" color2="#111111" color3="#222222" 
+              timeSpeed={0.02} warpStrength={0.5} zoom={3} 
+            />
+          </div>
+          <div className="section-container relative z-10 w-full py-40">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: { staggerChildren: 0.2, delayChildren: 0.1 }
+                }
+              }}
+              className="max-w-5xl mx-auto text-center"
+            >
+              <motion.span 
+                variants={{ hidden: { opacity: 0, y: 15 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
+                className="text-[10px] uppercase font-bold tracking-[0.5em] text-white/30 block mb-10"
+              >
+                The Next Era of Search
+              </motion.span>
+              <motion.h2 
+                variants={{ hidden: { opacity: 0, y: 40, scale: 0.96, rotateX: 8 }, visible: { opacity: 1, y: 0, scale: 1, rotateX: 0, transition: { duration: 1.6, ease: [0.16, 1, 0.3, 1] } } }}
+                className="text-5xl md:text-7xl lg:text-[5.5rem] font-nixie leading-[1.05] tracking-tight mb-14"
+              >
+                Information is no longer searched. <br />
+                <span className="text-white/30">It is generated.</span>
+              </motion.h2>
+              <motion.p 
+                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1.4, ease: [0.16, 1, 0.3, 1] } } }}
+                className="text-xl md:text-3xl font-light text-white/50 max-w-3xl mx-auto leading-relaxed"
+              >
+                Your brand needs more than links. It needs context, authority, and presence within the neural networks that define tomorrow's answers.
+              </motion.p>
+            </motion.div>
+          </div>
+          
+          <div className="absolute bottom-0 inset-x-0 h-48 bg-gradient-to-t from-surface-50 to-transparent" />
+        </section>
+
         {/* Screen 2: What We Do (AI Visibility Strategy) */}
-        <section className="relative py-28 md:py-40 bg-surface-50 border-y border-ink/[0.04] overflow-hidden">
+        <section className="relative pt-24 pb-32 md:pt-32 md:pb-48 bg-surface-50 overflow-hidden">
           <div className="absolute inset-0 bg-dot-pattern opacity-[0.8] mix-blend-multiply pointer-events-none" />
           <div className="absolute inset-0 -z-20 opacity-[0.05]">
             <Grainient
@@ -306,7 +354,7 @@ export const Home = () => {
                 opacity: 0,
                 willChange: "transform, opacity"
               }}
-              className="relative max-w-[1180px] mx-auto surface-plate-elevated px-7 py-12 md:px-14 md:py-20 lg:px-20 lg:py-24"
+              className="relative max-w-[1240px] mx-auto surface-plate-elevated shadow-[0_40px_160px_-20px_rgba(0,0,0,0.1),0_0_0_1px_rgba(0,0,0,0.03)] rounded-[4rem] px-8 py-16 md:px-16 md:py-24 lg:px-24 lg:py-32"
             >
               <div className="absolute inset-x-[18%] top-[12%] h-[26%] rounded-full bg-white opacity-70 blur-[90px] -z-10" />
 
@@ -428,7 +476,7 @@ export const Home = () => {
                 <div className="absolute inset-0 bg-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
                 <div className="mb-12">
                   <h3 className="text-[10px] uppercase tracking-[0.4em] font-bold text-ink/40 mb-6 group-hover:text-ink/80 transition-colors">Ongoing AI Visibility</h3>
-                  <div className="text-6xl font-nixie text-ink font-bold">$290<span className="text-lg font-sans text-ink/40 ml-3 font-normal">/mo</span></div>
+                  <div className="flex items-baseline gap-1"><span className="text-5xl font-nixie text-ink">$290</span><span className="text-sm font-sans text-ink/40 ml-1 font-normal">/mo</span></div>
                 </div>
                 <ul className="space-y-5 mb-14 flex-grow">
                   {[
@@ -461,7 +509,7 @@ export const Home = () => {
                 <div className="absolute inset-0 bg-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
                 <div className="mb-12">
                   <h3 className="text-[10px] uppercase tracking-[0.4em] font-bold text-ink/40 mb-6 group-hover:text-ink/80 transition-colors">AI Visibility Strategy</h3>
-                  <div className="text-6xl font-nixie text-ink font-bold">$490</div>
+                  <div className="text-5xl font-nixie text-ink">$490</div>
                 </div>
                 <ul className="space-y-5 mb-14 flex-grow">
                   {[
@@ -494,7 +542,7 @@ export const Home = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-white/[0.08] to-transparent pointer-events-none" />
                 <div className="mb-12">
                   <h3 className="text-[10px] uppercase tracking-[0.4em] font-bold text-white/50 mb-6 group-hover:text-white/80 transition-colors">Strategy + Consulting</h3>
-                  <div className="text-6xl font-nixie text-white font-bold">$890</div>
+                  <div className="text-5xl font-nixie text-white">$890</div>
                 </div>
                 <ul className="space-y-5 mb-14 flex-grow">
                   {[
@@ -537,54 +585,58 @@ export const Home = () => {
           <FloatingHex scrollYProgress={scrollYProgress} index={4} offset={-250} />
           <FloatingHex scrollYProgress={scrollYProgress} index={5} offset={300} />
 
-          <div className="section-container relative z-10">
+          <div className="section-container relative z-10 w-full px-4 md:px-12">
             <motion.div
               initial="hidden"
               whileInView="visible"
               variants={platformContainerVariants}
               viewport={{ once: true, margin: "-80px" }}
               style={{ opacity: 0, willChange: "transform, opacity" }}
-              className="max-w-4xl mx-auto text-center relative surface-plate-elevated px-6 py-20 md:p-24"
+              className="max-w-6xl mx-auto text-center relative surface-plate-dark overflow-hidden rounded-[3rem] md:rounded-[4.5rem] px-6 py-24 md:py-36 shadow-[0_40px_160px_-20px_rgba(0,0,0,0.3)]"
             >
-              <ReadabilityGlow />
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.08)_0%,transparent_60%)] pointer-events-none" />
               
-              <h2 className="text-5xl md:text-8xl font-nixie text-ink leading-[0.9] mb-16 tracking-tighter">
-                The Platform <br />is Coming.
-              </h2>
-              
-              <p className="text-2xl text-ink/40 font-light mb-20 max-w-2xl mx-auto leading-relaxed">
-                Be-Visible is also building a platform where companies can track their AI visibility, competitors, citations, and content opportunities over time.
-              </p>
+              <div className="relative z-10">
+                <h2 className="text-6xl md:text-8xl lg:text-[8rem] font-nixie text-white leading-[0.9] mb-12 tracking-tighter">
+                  The Platform <br />
+                  <span className="text-white/20">is Coming.</span>
+                </h2>
+                
+                <p className="text-2xl text-white/40 font-light mb-16 max-w-2xl mx-auto leading-relaxed">
+                  Be-Visible is also building a platform where companies can track their AI visibility, competitors, citations, and content opportunities over time.
+                </p>
 
-              <div className="flex flex-col sm:flex-row gap-8 justify-center items-center">
-                <button 
-                  onClick={() => openBooking("AI Visibility Strategy")}
-                  className="px-14 py-6 bg-ink text-white rounded-full font-bold text-[11px] uppercase tracking-[0.3em] hover:bg-ink/90 transition-all shadow-2xl shadow-ink/20 hover:-translate-y-1"
-                >
-                  Get Early Access
-                </button>
-                <button 
-                  onClick={() => openBooking("AI Visibility Strategy")}
-                  className="px-14 py-6 border border-ink/10 rounded-full font-bold text-[11px] uppercase tracking-[0.3em] hover:bg-surface-50 transition-all text-ink/40 hover:text-ink hover:-translate-y-1"
-                >
-                  Get Started
-                </button>
-              </div>
-
-              <div className="mt-40 flex flex-wrap justify-center gap-x-16 gap-y-8">
-                {["Intelligence", "Visibility", "Authority", "Presence"].map((word, i) => (
-                  <motion.div 
-                    key={word} 
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.6 + i * 0.15, duration: 1, ease: "easeOut" }}
-                    className="flex items-center gap-4"
+                <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                  <button 
+                    onClick={() => openBooking("AI Visibility Strategy")}
+                    className="px-12 py-5 bg-white text-ink rounded-full font-bold text-[11px] uppercase tracking-[0.3em] hover:bg-white/90 transition-all shadow-[0_0_40px_rgba(255,255,255,0.15)] hover:-translate-y-1"
                   >
-                    <div className="w-1.5 h-1.5 rounded-full bg-ink/5" />
-                    <span className="text-[11px] font-mono uppercase tracking-[0.5em] text-ink/10">{word}</span>
-                  </motion.div>
-                ))}
+                    Get Early Access
+                  </button>
+                  <button 
+                    onClick={() => openBooking("AI Visibility Strategy")}
+                    className="px-12 py-5 border border-white/10 rounded-full font-bold text-[11px] uppercase tracking-[0.3em] hover:bg-white/5 transition-all text-white/40 hover:text-white hover:-translate-y-1"
+                  >
+                    Get Started
+                  </button>
+                </div>
+
+                <div className="mt-32 md:mt-40 flex flex-wrap justify-center gap-x-12 gap-y-8">
+                  {["Intelligence", "Visibility", "Authority", "Presence"].map((word, i) => (
+                    <motion.div 
+                      key={word} 
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.6 + i * 0.15, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                      className="flex items-center gap-4"
+                    >
+                      <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
+                      <span className="text-[11px] font-mono uppercase tracking-[0.5em] text-white/20">{word}</span>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           </div>
