@@ -88,26 +88,27 @@ const RoadmapItem = ({
 }) => (
   <motion.div
     variants={{
-      hidden: { opacity: 0, y: 26, scale: 0.985 },
+      hidden: { opacity: 0, scale: 0.96, y: 30, rotateX: 6 },
       visible: { 
         opacity: 1, 
-        y: 0, 
         scale: 1,
-        transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] as const }
+        y: 0, 
+        rotateX: 0,
+        transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] }
       }
     }}
-    className="group rounded-[1.75rem] bg-white/78 backdrop-blur-sm border border-ink/[0.05] px-6 py-5 md:px-7 md:py-6 transition-all duration-500 hover:border-ink/10 hover:bg-white hover:shadow-[0_16px_40px_rgba(0,0,0,0.035)]"
+    className="group surface-plate px-6 py-5 md:px-7 md:py-6 transition-all duration-700 hover:shadow-[0_20px_60px_-16px_rgba(0,0,0,0.06),0_40px_120px_-24px_rgba(0,0,0,0.08)] hover:-translate-y-1"
   >
     <div className="flex items-start gap-4">
       <div className="mt-1 shrink-0">
-        <div className="w-2 h-2 rounded-full bg-ink/15 group-hover:bg-ink/30 transition-colors" />
+        <div className="w-2 h-2 rounded-full bg-ink/15 group-hover:bg-ink/40 transition-colors duration-500" />
       </div>
 
       <div className="flex-1 min-w-0">
-        <h3 className="text-[15px] md:text-base text-ink font-medium tracking-[-0.01em] mb-1.5">
+        <h3 className="text-[15px] md:text-base text-ink font-bold tracking-[-0.01em] mb-1.5 transition-colors duration-500 group-hover:text-black">
           {title}
         </h3>
-        <p className="text-sm md:text-[15px] leading-relaxed text-ink/52 group-hover:text-ink/68 transition-colors font-light">
+        <p className="text-sm md:text-[15px] leading-relaxed text-ink/52 group-hover:text-ink/80 transition-colors duration-500 font-light">
           {desc}
         </p>
       </div>
@@ -118,22 +119,20 @@ const RoadmapItem = ({
 const roadmapContainerVariants = {
   hidden: { 
     opacity: 0, 
-    y: 70, 
-    rotateX: 10, 
-    rotateZ: -1.8, 
-    scale: 0.985 
+    y: 80, 
+    rotateX: 8, 
+    scale: 0.96 
   },
   visible: { 
     opacity: 1, 
     y: 0, 
     rotateX: 0, 
-    rotateZ: 0, 
     scale: 1,
     transition: { 
-      duration: 1.35, 
-      ease: [0.16, 1, 0.3, 1] as const,
-      staggerChildren: 0.06,
-      delayChildren: 0.15
+      duration: 1.4, 
+      ease: [0.16, 1, 0.3, 1],
+      staggerChildren: 0.08,
+      delayChildren: 0.2
     }
   }
 };
@@ -143,27 +142,30 @@ const pricingContainerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.15,
       delayChildren: 0.1
     }
   }
 };
 
 const pricingCardVariants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 60, scale: 0.96, rotateX: 5 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 1, ease: [0.16, 1, 0.3, 1] as const }
+    scale: 1,
+    rotateX: 0,
+    transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] }
   }
 };
 
 const platformContainerVariants = {
-  hidden: { opacity: 0, y: 60 },
+  hidden: { opacity: 0, y: 80, scale: 0.97 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 1.5, ease: [0.16, 1, 0.3, 1] as const }
+    scale: 1,
+    transition: { duration: 1.4, ease: [0.16, 1, 0.3, 1] }
   }
 };
 
@@ -274,7 +276,8 @@ export const Home = () => {
         </section>
 
         {/* Screen 2: What We Do (AI Visibility Strategy) */}
-        <section className="relative py-28 md:py-40 bg-white border-b border-ink/5 overflow-hidden">
+        <section className="relative py-28 md:py-40 bg-surface-50 border-y border-ink/[0.04] overflow-hidden">
+          <div className="absolute inset-0 bg-dot-pattern opacity-[0.8] mix-blend-multiply pointer-events-none" />
           <div className="absolute inset-0 -z-20 opacity-[0.05]">
             <Grainient
               color1="#000000"
@@ -303,14 +306,11 @@ export const Home = () => {
                 opacity: 0,
                 willChange: "transform, opacity"
               }}
-              className="relative max-w-[1180px] mx-auto"
+              className="relative max-w-[1180px] mx-auto surface-plate-elevated px-7 py-12 md:px-14 md:py-20 lg:px-20 lg:py-24"
             >
-              <div className="absolute inset-0 rounded-[3rem] bg-gradient-to-b from-white/70 via-white/40 to-white/65 -z-10" />
-              <div className="absolute inset-0 rounded-[3rem] border border-ink/[0.045] -z-10" />
-              <div className="absolute inset-[2%] rounded-[2.6rem] border border-white/70 -z-10 opacity-70" />
               <div className="absolute inset-x-[18%] top-[12%] h-[26%] rounded-full bg-white opacity-70 blur-[90px] -z-10" />
 
-              <div className="px-7 py-10 md:px-14 md:py-16 lg:px-20 lg:py-20">
+              <div className="relative z-10">
                 <RoadmapRevealText className="text-center mb-16 md:mb-20 relative">
                   <ReadabilityGlow />
                   <span className="text-[10px] font-bold tracking-[0.38em] text-ink/18 uppercase mb-6 block">
@@ -383,7 +383,8 @@ export const Home = () => {
         </section>
 
         {/* Screen 3: Pricing Cards */}
-        <ScrollSection className="py-32 md:py-48 tonal-plane" speed={1.2}>
+        <ScrollSection className="py-32 md:py-48 bg-surface-50 border-b border-ink/[0.04]" speed={1.2}>
+          <div className="absolute inset-0 bg-dot-pattern opacity-[0.8] mix-blend-multiply pointer-events-none" />
           <div className="absolute inset-0 -z-20 opacity-[0.03]">
             <Grainient 
               color1="#000000"
@@ -422,31 +423,31 @@ export const Home = () => {
               {/* Card 1 - Ongoing AI Visibility */}
               <motion.div 
                 variants={pricingCardVariants}
-                className="p-12 rounded-[3rem] border border-ink/5 bg-white hover:border-ink/20 transition-all duration-700 flex flex-col hover:shadow-[0_20px_80px_rgba(0,0,0,0.03)] group relative overflow-hidden"
+                className="p-12 surface-plate transition-all duration-700 flex flex-col hover:-translate-y-2 group relative overflow-hidden"
               >
-                <div className="absolute inset-0 bg-surface-50 opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
+                <div className="absolute inset-0 bg-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
                 <div className="mb-12">
-                  <h3 className="text-[10px] uppercase tracking-[0.4em] font-bold text-ink/30 mb-6 group-hover:text-ink/60 transition-colors">Ongoing AI Visibility</h3>
-                  <div className="text-6xl font-nixie text-ink">$290<span className="text-lg font-sans text-ink/30 ml-3">/mo</span></div>
+                  <h3 className="text-[10px] uppercase tracking-[0.4em] font-bold text-ink/40 mb-6 group-hover:text-ink/80 transition-colors">Ongoing AI Visibility</h3>
+                  <div className="text-6xl font-nixie text-ink font-bold">$290<span className="text-lg font-sans text-ink/40 ml-3 font-normal">/mo</span></div>
                 </div>
                 <ul className="space-y-5 mb-14 flex-grow">
                   {[
-                    "Monthly AI visibility tracking",
+                    "Monthly AI tracking",
                     "Competitor tracking",
-                    "New content opportunities",
-                    "New citation opportunities",
+                    "Content opportunities",
+                    "Citation opportunities",
                     "Monthly report",
                     "Dashboard access",
-                    "Early access to platform"
+                    "Platform early access"
                   ].map(feature => (
-                    <li key={feature} className="flex items-center gap-4 text-sm text-ink/50 font-light group-hover:text-ink/80 transition-colors">
-                      <Hexagon size={6} className="bg-ink/10 group-hover:bg-ink/30 transition-colors" /> {feature}
+                    <li key={feature} className="flex items-center gap-4 text-sm text-ink/60 font-light group-hover:text-ink/90 transition-colors">
+                      <Hexagon size={6} className="bg-ink/15 group-hover:bg-ink/40 transition-colors" /> {feature}
                     </li>
                   ))}
                 </ul>
                 <button 
                   onClick={goToApp}
-                  className="w-full py-5 rounded-2xl border border-ink/10 font-bold text-[10px] uppercase tracking-[0.3em] hover:bg-ink hover:text-white transition-all duration-500"
+                  className="w-full py-5 rounded-2xl border border-ink/[0.08] font-bold text-[10px] uppercase tracking-[0.3em] hover:bg-ink hover:text-white transition-all duration-500 shadow-sm"
                 >
                   Start Monitoring
                 </button>
@@ -455,31 +456,31 @@ export const Home = () => {
               {/* Card 2 - AI Visibility Strategy */}
               <motion.div 
                 variants={pricingCardVariants}
-                className="p-12 rounded-[3rem] border border-ink/5 bg-white hover:border-ink/20 transition-all duration-700 flex flex-col hover:shadow-[0_20px_80px_rgba(0,0,0,0.03)] group relative overflow-hidden"
+                className="p-12 surface-plate transition-all duration-700 flex flex-col hover:-translate-y-2 group relative overflow-hidden"
               >
-                <div className="absolute inset-0 bg-surface-50 opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
+                <div className="absolute inset-0 bg-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
                 <div className="mb-12">
-                  <h3 className="text-[10px] uppercase tracking-[0.4em] font-bold text-ink/30 mb-6 group-hover:text-ink/60 transition-colors">AI Visibility Strategy</h3>
-                  <div className="text-6xl font-nixie text-ink">$490</div>
+                  <h3 className="text-[10px] uppercase tracking-[0.4em] font-bold text-ink/40 mb-6 group-hover:text-ink/80 transition-colors">AI Visibility Strategy</h3>
+                  <div className="text-6xl font-nixie text-ink font-bold">$490</div>
                 </div>
                 <ul className="space-y-5 mb-14 flex-grow">
                   {[
                     "Industry AI analysis",
-                    "Competitor visibility analysis",
-                    "Citation and source analysis",
-                    "Content and page recommendations",
-                    "Off-page / citation opportunities",
-                    "Positioning recommendations",
+                    "Competitor visibility",
+                    "Citation/source analysis",
+                    "Page recommendations",
+                    "Off-page opportunities",
+                    "Positioning guide",
                     "Strategic roadmap"
                   ].map(feature => (
-                    <li key={feature} className="flex items-center gap-4 text-sm text-ink/50 font-light group-hover:text-ink/80 transition-colors">
-                      <Hexagon size={6} className="bg-ink/10 group-hover:bg-ink/30 transition-colors" /> {feature}
+                    <li key={feature} className="flex items-center gap-4 text-sm text-ink/60 font-light group-hover:text-ink/90 transition-colors">
+                      <Hexagon size={6} className="bg-ink/15 group-hover:bg-ink/40 transition-colors" /> {feature}
                     </li>
                   ))}
                 </ul>
                 <button 
                   onClick={() => openBooking("AI Visibility Strategy")}
-                  className="w-full py-5 rounded-2xl border border-ink/10 font-bold text-[10px] uppercase tracking-[0.3em] hover:bg-ink hover:text-white transition-all duration-500"
+                  className="w-full py-5 rounded-2xl border border-ink/[0.08] font-bold text-[10px] uppercase tracking-[0.3em] hover:bg-ink hover:text-white transition-all duration-500 shadow-sm"
                 >
                   Get Strategy
                 </button>
@@ -488,12 +489,12 @@ export const Home = () => {
               {/* Card 3 - Strategy + Consulting (Featured) */}
               <motion.div 
                 variants={pricingCardVariants}
-                className="p-12 rounded-[3rem] border border-ink bg-ink text-white transition-all duration-700 flex flex-col shadow-[0_40px_100px_rgba(0,0,0,0.15)] scale-105 z-10 hover:scale-[1.08] relative overflow-hidden"
+                className="p-12 surface-plate-dark transition-all duration-700 flex flex-col group hover:-translate-y-2 scale-[1.02] hover:scale-[1.04] z-10 relative overflow-hidden"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.08] to-transparent pointer-events-none" />
                 <div className="mb-12">
-                  <h3 className="text-[10px] uppercase tracking-[0.4em] font-bold text-white/30 mb-6">Strategy + Consulting</h3>
-                  <div className="text-6xl font-nixie">$890</div>
+                  <h3 className="text-[10px] uppercase tracking-[0.4em] font-bold text-white/50 mb-6 group-hover:text-white/80 transition-colors">Strategy + Consulting</h3>
+                  <div className="text-6xl font-nixie text-white font-bold">$890</div>
                 </div>
                 <ul className="space-y-5 mb-14 flex-grow">
                   {[
@@ -503,14 +504,14 @@ export const Home = () => {
                     "Content prioritization",
                     "Follow-up recommendations"
                   ].map(feature => (
-                    <li key={feature} className="flex items-center gap-4 text-sm text-white/50 font-light">
-                      <Hexagon size={6} className="bg-white/20" /> {feature}
+                    <li key={feature} className="flex items-center gap-4 text-sm text-white/70 font-light group-hover:text-white transition-colors">
+                      <Hexagon size={6} className="bg-white/30 group-hover:bg-white/50 transition-colors" /> {feature}
                     </li>
                   ))}
                 </ul>
                 <button 
                   onClick={() => openBooking("Strategy + Consulting")}
-                  className="w-full py-5 rounded-2xl bg-white text-ink font-bold text-[10px] uppercase tracking-[0.3em] hover:bg-white/90 transition-all duration-500"
+                  className="w-full py-5 rounded-2xl bg-white text-ink font-bold text-[10px] uppercase tracking-[0.3em] hover:bg-surface-100 transition-all duration-500 shadow-lg"
                 >
                   Get Strategy + Consulting
                 </button>
@@ -520,7 +521,8 @@ export const Home = () => {
         </ScrollSection>
 
         {/* Screen 4: Platform / Early Access + Final CTA */}
-        <ScrollSection className="py-40 md:py-64 bg-white relative overflow-hidden" speed={0.6}>
+        <ScrollSection className="py-40 md:py-64 bg-surface-50 relative overflow-hidden" speed={0.6}>
+          <div className="absolute inset-0 bg-dot-pattern opacity-[0.8] mix-blend-multiply pointer-events-none" />
           <div className="absolute inset-0 -z-20 opacity-[0.06]">
             <Grainient 
               color1="#000000"
@@ -542,7 +544,7 @@ export const Home = () => {
               variants={platformContainerVariants}
               viewport={{ once: true, margin: "-80px" }}
               style={{ opacity: 0, willChange: "transform, opacity" }}
-              className="max-w-4xl mx-auto text-center relative"
+              className="max-w-4xl mx-auto text-center relative surface-plate-elevated px-6 py-20 md:p-24"
             >
               <ReadabilityGlow />
               
