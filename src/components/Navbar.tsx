@@ -55,12 +55,13 @@ const Navbar: React.FC<NavbarProps> = ({ items, onGetStarted }) => {
         className="h-[72px] flex items-center justify-between px-8 relative border pointer-events-auto"
       >
         {/* Left Section: Logo */}
-        <div className="flex-shrink-0">
-          <Link to="/" aria-label="Home" className="block outline-none">
+        <div className="flex-shrink-0 relative">
+          <div className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none blur-[40px] bg-[radial-gradient(circle_at_center,_black_0%,_transparent_70%)] w-[160%] h-[160%] transition-opacity duration-500 ${!scrolled ? 'opacity-[0.85]' : 'opacity-0'}`} />
+          <Link to="/" aria-label="Home" className="block outline-none relative z-10">
             <img 
               src="/logo.png" 
               alt="Be-visible Logo" 
-              className={`h-8 w-auto transition-all duration-500 ${!scrolled ? 'invert brightness-0 filter' : ''}`}
+              className={`h-16 md:h-20 w-auto transition-all duration-500 ${!scrolled ? 'invert brightness-0 filter drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]' : 'drop-shadow-sm'}`}
             />
           </Link>
         </div>

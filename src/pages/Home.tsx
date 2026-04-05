@@ -232,8 +232,8 @@ export const Home = () => {
           </div>
           <div className="max-w-3xl mx-auto relative z-10 pointer-events-none px-4">
             <div className="pointer-events-auto relative">
-              <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 -z-10 pointer-events-none opacity-[0.35] blur-[100px] bg-radial-[circle_at_center,_black_0%,_transparent_80%] h-[150%] w-[150%] left-1/2 -translate-x-1/2" />
-              <h1 className="text-4xl md:text-6xl font-nixie mb-8 tracking-tighter drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]">
+              <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 -z-10 pointer-events-none opacity-[0.85] blur-[100px] bg-radial-[circle_at_center,_black_0%,_transparent_80%] h-[150%] w-[150%] left-1/2 -translate-x-1/2" />
+              <h1 className="text-4xl md:text-6xl font-nixie mb-8 tracking-tighter drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
                 READY TO BE <br />
                 <span className="text-white border-2 border-white px-3 inline-block mt-2">VISIBLE?</span>
               </h1>
