@@ -52,7 +52,7 @@ const Navbar: React.FC<NavbarProps> = ({ items, onGetStarted }) => {
           backdropFilter: scrolled ? "blur(16px)" : "blur(0px)",
         }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className="h-[72px] flex items-center justify-between px-8 relative border pointer-events-auto"
+        className="h-[88px] md:h-[100px] flex items-center justify-between px-6 md:px-8 relative border pointer-events-auto"
       >
         {/* Left Section: Logo */}
         <div className="flex-shrink-0 relative">
@@ -61,7 +61,7 @@ const Navbar: React.FC<NavbarProps> = ({ items, onGetStarted }) => {
             <img 
               src="/logo.png" 
               alt="Be-visible Logo" 
-              className={`h-16 md:h-20 w-auto transition-all duration-500 ${!scrolled ? 'invert brightness-0 filter drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]' : 'drop-shadow-sm'}`}
+              className={`h-[60px] md:h-[72px] w-auto transition-all duration-500 ${!scrolled ? 'invert brightness-0 filter drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]' : 'drop-shadow-sm'}`}
             />
           </Link>
         </div>
@@ -75,7 +75,7 @@ const Navbar: React.FC<NavbarProps> = ({ items, onGetStarted }) => {
             return (
               <div
                 key={item.label}
-                className="relative h-[72px] flex items-center"
+                className="relative h-[100px] flex items-center"
                 onMouseEnter={() => item.links && setActiveDropdown(item.label)}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
