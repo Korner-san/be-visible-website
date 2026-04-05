@@ -56,8 +56,12 @@ const Navbar: React.FC<NavbarProps> = ({ items, onGetStarted }) => {
       >
         {/* Left Section: Logo */}
         <div className="flex-shrink-0">
-          <Link to="/" className={`font-nixie font-bold text-xl tracking-tighter transition-colors duration-500 ${scrolled ? 'text-ink' : 'text-white'}`}>
-            Be-visible
+          <Link to="/" aria-label="Home" className="block outline-none">
+            <img 
+              src="/logo.png" 
+              alt="Be-visible Logo" 
+              className={`h-8 w-auto transition-all duration-500 ${!scrolled ? 'invert brightness-0 filter' : ''}`}
+            />
           </Link>
         </div>
 
