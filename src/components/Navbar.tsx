@@ -52,16 +52,16 @@ const Navbar: React.FC<NavbarProps> = ({ items, onGetStarted }) => {
           backdropFilter: scrolled ? "blur(16px)" : "blur(0px)",
         }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className="h-[88px] md:h-[100px] flex items-center justify-between px-6 md:px-8 relative border pointer-events-auto"
+        className="h-[72px] md:h-[80px] flex items-center justify-between px-6 md:px-8 relative border pointer-events-auto"
       >
         {/* Left Section: Logo */}
         <div className="flex-shrink-0 relative">
-          <div className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none blur-[40px] bg-[radial-gradient(circle_at_center,_black_0%,_transparent_70%)] w-[160%] h-[160%] transition-opacity duration-500 ${!scrolled ? 'opacity-[0.85]' : 'opacity-0'}`} />
+          <div className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none blur-[40px] bg-[radial-gradient(ellipse_at_center,_black_0%,_transparent_70%)] w-[140%] h-[250%] transition-opacity duration-500 ${!scrolled ? 'opacity-[0.85]' : 'opacity-0'}`} />
           <Link to="/" aria-label="Home" className="block outline-none relative z-10">
             <img 
-              src="/logo.png" 
+              src="/logo_text.png" 
               alt="Be-visible Logo" 
-              className={`h-[60px] md:h-[72px] w-auto transition-all duration-500 ${!scrolled ? 'invert brightness-0 filter drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]' : 'drop-shadow-sm'}`}
+              className={`h-7 md:h-[32px] w-auto transition-all duration-500 ${!scrolled ? 'invert brightness-0 filter drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]' : 'drop-shadow-sm'}`}
             />
           </Link>
         </div>
@@ -75,7 +75,7 @@ const Navbar: React.FC<NavbarProps> = ({ items, onGetStarted }) => {
             return (
               <div
                 key={item.label}
-                className="relative h-[100px] flex items-center"
+                className="relative h-[72px] md:h-[80px] flex items-center"
                 onMouseEnter={() => item.links && setActiveDropdown(item.label)}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
