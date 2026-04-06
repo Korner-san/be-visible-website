@@ -59,7 +59,7 @@ const Navbar: React.FC<NavbarProps> = ({ items, onGetStarted }) => {
           <div className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none blur-[40px] bg-[radial-gradient(ellipse_at_center,_black_0%,_transparent_70%)] w-[140%] h-[250%] transition-opacity duration-500 ${!scrolled ? 'opacity-[0.85]' : 'opacity-0'}`} />
           <Link to="/" aria-label="Home" className="block outline-none relative z-10">
             <img 
-              src="/logo2_final.png" 
+              src="/logo_text.png" 
               alt="Be-visible Logo" 
               className={`h-9 md:h-[44px] w-auto transition-all duration-500 ${!scrolled ? 'invert brightness-0 filter drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]' : 'drop-shadow-sm'}`}
             />
