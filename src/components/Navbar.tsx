@@ -61,7 +61,7 @@ const Navbar: React.FC<NavbarProps> = ({ items, onGetStarted }) => {
             <img 
               src="/logo_text.png" 
               alt="Be-visible Logo" 
-              className={`h-7 md:h-[32px] w-auto transition-all duration-500 ${!scrolled ? 'invert brightness-0 filter drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]' : 'drop-shadow-sm'}`}
+              className={`h-9 md:h-[44px] w-auto transition-all duration-500 ${!scrolled ? 'invert brightness-0 filter drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]' : 'drop-shadow-sm'}`}
             />
           </Link>
         </div>
