@@ -56,83 +56,95 @@ const FloatingHex = ({ scrollYProgress, index, offset }: { scrollYProgress: any,
   );
 };
 
-const RoadmapRevealText = ({
-  children,
-  className = "",
+// ─── CAPABILITY PANEL ────────────────────────────────────────────────────────
+const CapabilityPanel = ({
+  label,
+  title,
+  desc,
+  index,
 }: {
-  children: React.ReactNode;
-  className?: string;
+  label: string;
+  title: string;
+  desc: string;
+  index: number;
 }) => (
   <motion.div
     variants={{
-      hidden: { opacity: 0, y: 28, filter: "blur(8px)" },
-      visible: { 
-        opacity: 1, 
-        y: 0, 
-        filter: "blur(0px)",
-        transition: { duration: 1, ease: [0.16, 1, 0.3, 1] as const }
+      hidden: { opacity: 0, y: 32, scale: 0.97 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: index * 0.08 }
       }
     }}
-    className={className}
+    className="group relative rounded-[2rem] border border-white/[0.07] bg-white/[0.04] backdrop-blur-sm px-8 py-8 overflow-hidden transition-all duration-700 hover:border-white/[0.15] hover:bg-white/[0.07]"
   >
-    {children}
+    <div className="absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent pointer-events-none" />
+    <span className="text-[9px] font-bold tracking-[0.5em] uppercase text-white/20 block mb-5">{label}</span>
+    <h3 className="text-[17px] font-bold text-white leading-snug mb-3 tracking-[-0.01em]">{title}</h3>
+    <p className="text-[14px] font-light text-white/40 leading-relaxed">{desc}</p>
   </motion.div>
 );
 
-const RoadmapItem = ({
+// ─── ROADMAP STAGE ────────────────────────────────────────────────────────────
+const RoadmapStage = ({
+  step,
   title,
   desc,
+  items,
+  isLast,
 }: {
+  step: string;
   title: string;
   desc: string;
+  items: string[];
+  isLast?: boolean;
 }) => (
   <motion.div
     variants={{
-      hidden: { opacity: 0, scale: 0.96, y: 30, rotateX: 6 },
-      visible: { 
-        opacity: 1, 
-        scale: 1,
-        y: 0, 
-        rotateX: 0,
-        transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] }
-      }
+      hidden: { opacity: 0, y: 40 },
+      visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
     }}
-    className="group surface-plate px-6 py-5 md:px-7 md:py-6 transition-all duration-700 hover:shadow-[0_20px_60px_-16px_rgba(0,0,0,0.06),0_40px_120px_-24px_rgba(0,0,0,0.08)] hover:-translate-y-1"
+    className="relative flex gap-8 md:gap-12"
   >
-    <div className="flex items-start gap-4">
-      <div className="mt-1 shrink-0">
-        <div className="w-2 h-2 rounded-full bg-ink/15 group-hover:bg-ink/40 transition-colors duration-500" />
+    {/* Left: Step indicator + connector line */}
+    <div className="flex flex-col items-center flex-shrink-0 w-10">
+      <div className="w-10 h-10 rounded-full border border-ink/15 bg-white flex items-center justify-center shadow-[0_4px_20px_rgba(0,0,0,0.06)] z-10">
+        <span className="text-[10px] font-bold tracking-wider text-ink/40">{step}</span>
       </div>
+      {!isLast && (
+        <div className="flex-1 w-px bg-gradient-to-b from-ink/10 to-transparent mt-3 min-h-[80px]" />
+      )}
+    </div>
 
-      <div className="flex-1 min-w-0">
-        <h3 className="text-[15px] md:text-base text-ink font-bold tracking-[-0.01em] mb-1.5 transition-colors duration-500 group-hover:text-black">
-          {title}
-        </h3>
-        <p className="text-sm md:text-[15px] leading-relaxed text-ink/52 group-hover:text-ink/80 transition-colors duration-500 font-light">
-          {desc}
-        </p>
+    {/* Right: Content */}
+    <div className={`flex-1 pb-16 ${isLast ? "" : ""}`}>
+      <div className="group rounded-[2rem] border border-ink/[0.06] bg-white shadow-[0_8px_40px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_64px_rgba(0,0,0,0.08)] transition-all duration-700 hover:-translate-y-1 px-8 py-8 md:px-10 md:py-9 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-white to-transparent pointer-events-none opacity-60" />
+        <div className="relative z-10">
+          <h3 className="text-xl md:text-2xl font-bold text-ink tracking-[-0.02em] mb-2">{title}</h3>
+          <p className="text-sm text-ink/50 font-light leading-relaxed mb-6 max-w-xl">{desc}</p>
+          <ul className="flex flex-wrap gap-2">
+            {items.map(item => (
+              <li key={item} className="text-[11px] font-medium text-ink/50 tracking-wide bg-ink/[0.04] px-3 py-1.5 rounded-full border border-ink/[0.06] group-hover:border-ink/10 transition-colors">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   </motion.div>
 );
 
 const roadmapContainerVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 80, 
-    rotateX: 8, 
-    scale: 0.96 
-  },
+  hidden: { opacity: 0 },
   visible: { 
-    opacity: 1, 
-    y: 0, 
-    rotateX: 0, 
-    scale: 1,
+    opacity: 1,
     transition: { 
-      duration: 1.4, 
-      ease: [0.16, 1, 0.3, 1],
-      staggerChildren: 0.08,
-      delayChildren: 0.2
+      staggerChildren: 0.2,
+      delayChildren: 0.1
     }
   }
 };
@@ -202,7 +214,7 @@ export const Home = () => {
       className="relative z-10"
     >
       <main>
-        {/* Screen 1: Hero Section (LOCKED) */}
+        {/* ── HERO (LOCKED) ─────────────────────────────────────────────────── */}
         <section className="relative h-screen bg-black text-white text-center overflow-hidden flex items-center justify-center pt-20">
           <div className="absolute inset-0">
             <Grainient
@@ -254,6 +266,7 @@ export const Home = () => {
                   </AnimatePresence>
                 </span>
               </p>
+              {/* ── UPDATED HERO SUPPORTING SENTENCE ── */}
               <p className="text-sm mb-12 font-light opacity-60 max-w-xl mx-auto leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
                 We track and analyze how AI models talk about your brand, industry, and competitors, and build a strategy so your company appears on AI search platforms.
               </p>
@@ -275,153 +288,201 @@ export const Home = () => {
           </div>
         </section>
 
-        {/* Screen 1.5: Methodology / Off-Page Section */}
-        <section className="relative py-32 md:py-48 bg-ink text-white overflow-hidden">
-          <div className="absolute inset-0 opacity-15 pointer-events-none">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:32px_32px]" />
-          </div>
-          
-          <div className="section-container relative z-10 w-full">
+        {/* ── BLACK SECTION: OFF-PAGE PROCESS + TRANSITION ───────────────────── */}
+        <section className="relative bg-ink text-white overflow-hidden">
+          {/* Subtle dot grid */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:28px_28px] pointer-events-none opacity-40" />
+          {/* Soft ambient top glow bleeding from hero */}
+          <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-black/60 to-transparent pointer-events-none" />
+
+          <div className="section-container relative z-10 py-32 md:py-48">
+
+            {/* ── SECTION LABEL ── */}
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
+              variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
+              className="text-center mb-20 md:mb-24"
+            >
+              <span className="text-[9px] font-bold tracking-[0.55em] uppercase text-white/25 block mb-6">
+                The New Reality
+              </span>
+              <h2 className="text-4xl md:text-6xl lg:text-7xl font-nixie leading-[1.04] tracking-tight max-w-4xl mx-auto">
+                AI visibility is not built <br />
+                <span className="text-white/25">through your website alone.</span>
+              </h2>
+            </motion.div>
+
+            {/* ── CAPABILITY PANELS ── */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.1 } } }}
+              className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16"
+            >
+              <CapabilityPanel
+                index={0}
+                label="Off-page signals"
+                title="Citations across the web shape AI answers"
+                desc="AI models learn from what trusted websites, publications, and forums say about your brand — not only your own pages."
+              />
+              <CapabilityPanel
+                index={1}
+                label="Prompt ecosystem"
+                title="Your competitors are already inside the answer"
+                desc="When users ask AI about your industry, someone appears. We analyze exactly who, how, and why — then build a path so it becomes you."
+              />
+              <CapabilityPanel
+                index={2}
+                label="Our edge"
+                title="We specialize where most strategies stop"
+                desc="Most SEO and content agencies stop at your site. We go further — analyzing citations, source influence, and AI training signals your competitors are missing."
+              />
+            </motion.div>
+
+            {/* ── SECONDARY ROW: TWO PANELS ── */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.05 } } }}
+              className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-28 md:mb-40"
+            >
+              <CapabilityPanel
+                index={0}
+                label="Source influence"
+                title="We map which sources shape what AI recommends"
+                desc="Our process identifies the exact websites, domains, and publications that influence AI model outputs in your niche — and builds a presence strategy around them."
+              />
+              <CapabilityPanel
+                index={1}
+                label="Strategic output"
+                title="A clear strategy. Not just a report."
+                desc="We deliver a complete, actionable playbook — covering on-page structure, off-page citation targets, positioning priorities, and a staged execution roadmap."
+              />
+            </motion.div>
+
+            {/* ── TRANSITION MOMENT: "How we build our strategies" ── */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-60px" }}
               variants={{
                 hidden: { opacity: 0 },
-                visible: {
-                  opacity: 1,
-                  transition: { staggerChildren: 0.15 }
-                }
+                visible: { opacity: 1, transition: { staggerChildren: 0.18, delayChildren: 0 } }
               }}
-              className="max-w-6xl mx-auto"
+              className="text-center relative"
             >
-              <div className="text-center mb-24 md:mb-32">
-                <motion.span 
-                  variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
-                  className="text-[10px] uppercase font-bold tracking-[0.5em] text-white/30 block mb-8"
-                >
-                  The New Ecosystem
-                </motion.span>
-                <motion.h2 
-                  variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                  className="text-4xl md:text-6xl font-nixie leading-[1.1] mb-8"
-                >
-                  AI Visibility is built <br />
-                  <span className="text-white/40">beyond the page.</span>
-                </motion.h2>
-              </div>
+              {/* Horizontal divider line that grows in */}
+              <motion.div
+                variants={{
+                  hidden: { scaleX: 0 },
+                  visible: { scaleX: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
+                }}
+                className="w-px h-20 bg-gradient-to-b from-transparent via-white/20 to-white/5 mx-auto mb-14 origin-top"
+              />
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-40">
-                {[
-                  {
-                    title: "Off-Page Authority",
-                    desc: "It's no longer just about your own site. We influence the sources AI models consume to define your brand identity.",
-                    tag: "Authority"
-                  },
-                  {
-                    title: "Neural Presence",
-                    desc: "We ensure your brand exists within the context of the neural networks that define tomorrow's answers.",
-                    tag: "Presence"
-                  },
-                  {
-                    title: "Expert Execution",
-                    desc: "Our methodology focuses on actions the market isn't taking, building a moat around your AI visibility.",
-                    tag: "Differentiation"
-                  }
-                ].map((item, i) => (
-                  <motion.div
-                    key={i}
-                    variants={{
-                      hidden: { opacity: 0, y: 30, scale: 0.98 },
-                      visible: { opacity: 1, y: 0, scale: 1 }
-                    }}
-                    className="surface-plate-dark p-8 md:p-10 rounded-[2.5rem] border border-white/5 relative group hover:border-white/10 transition-colors"
-                  >
-                    <div className="text-[9px] uppercase tracking-widest font-bold text-white/20 mb-12 group-hover:text-white/40 transition-colors">
-                      {item.tag}
-                    </div>
-                    <h3 className="text-xl md:text-2xl font-nixie mb-6">{item.title}</h3>
-                    <p className="text-sm md:text-base font-light text-white/50 leading-relaxed group-hover:text-white/70 transition-colors">
-                      {item.desc}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
+              <motion.span
+                variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
+                className="text-[9px] font-bold tracking-[0.55em] uppercase text-white/25 block mb-5"
+              >
+                Our Process
+              </motion.span>
 
-              <div className="text-center pt-20 border-t border-white/5">
-                <motion.h3 
-                  variants={{ hidden: { opacity: 0, scale: 0.95 }, visible: { opacity: 1, scale: 1 } }}
-                  className="text-2xl md:text-3xl font-nixie text-white tracking-tight"
-                >
-                  How we build our strategies
-                </motion.h3>
-              </div>
+              <motion.h2
+                variants={{
+                  hidden: { opacity: 0, y: 24, scale: 0.97 },
+                  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 1.4, ease: [0.16, 1, 0.3, 1] } }
+                }}
+                className="text-4xl md:text-6xl lg:text-7xl font-nixie tracking-tight text-white"
+              >
+                How we build our strategies
+              </motion.h2>
+
+              <motion.p
+                variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] } } }}
+                className="mt-6 text-base text-white/35 font-light max-w-md mx-auto leading-relaxed"
+              >
+                A four-stage process that turns AI data into a ready-to-execute visibility strategy.
+              </motion.p>
+            </motion.div>
+
+          </div>
+
+          {/* ── GRADIENT EXIT: black → surface-50 ── */}
+          <div className="h-48 md:h-64 bg-gradient-to-b from-ink to-surface-50 pointer-events-none" />
+        </section>
+
+        {/* ── LIGHT SECTION: VERTICAL ROADMAP ──────────────────────────────── */}
+        <section className="relative bg-surface-50 overflow-hidden">
+          <div className="absolute inset-0 bg-dot-pattern opacity-[0.6] mix-blend-multiply pointer-events-none" />
+          <div className="absolute inset-0 -z-20 opacity-[0.04]">
+            <Grainient
+              color1="#000000"
+              color2="#ffffff"
+              color3="#808080"
+              timeSpeed={0.05}
+              warpStrength={0.22}
+              zoom={2.2}
+            />
+          </div>
+
+          <div className="section-container py-28 md:py-40">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              variants={roadmapContainerVariants}
+              className="max-w-2xl mx-auto"
+            >
+              <RoadmapStage
+                step="01"
+                title="Onboarding"
+                desc="We align on your brand, positioning, target audience, and core competitors to establish a clear strategic baseline."
+                items={["Brand positioning", "Competitor identification", "Target market clarity", "Initial AI snapshot"]}
+              />
+              <RoadmapStage
+                step="02"
+                title="Prompt analysis"
+                desc="We systematically test how AI models respond to the prompts your potential customers are actually asking — and map where you stand."
+                items={["Prompt landscape mapping", "Mention rate analysis", "Share of voice scoring", "AI model coverage"]}
+              />
+              <RoadmapStage
+                step="03"
+                title="Competitor analysis"
+                desc="We identify which competitors appear in AI answers, what content they have, and which off-page sources are elevating their visibility."
+                items={["Competitor mention tracking", "Source & citation mapping", "Content gap identification", "Positioning benchmark"]}
+              />
+              <RoadmapStage
+                step="04"
+                title="Strategy building"
+                desc="We synthesize everything into a complete, executable AI visibility roadmap — covering content, citations, positioning, and off-page priorities."
+                items={["Strategic roadmap", "Content priorities", "Citation targets", "Off-page action plan"]}
+                isLast
+              />
+            </motion.div>
+
+            {/* CTA after roadmap */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+              className="text-center mt-20"
+            >
+              <button
+                onClick={() => openBooking("AI Visibility Strategy")}
+                className="px-12 py-5 bg-ink text-white rounded-full font-bold text-[11px] uppercase tracking-[0.3em] hover:bg-ink/90 transition-all shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:-translate-y-1"
+              >
+                Start with a Strategy
+              </button>
             </motion.div>
           </div>
         </section>
 
-        {/* Screen 2: Roadmap Section (Modular/Product Style) */}
-        <section className="relative py-32 md:py-48 bg-white overflow-hidden">
-          <div className="absolute inset-0 bg-dot-pattern opacity-[0.2] pointer-events-none" />
-          
-          <div className="section-container relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 md:gap-8 max-w-[1400px] mx-auto">
-              {[
-                {
-                  step: "01",
-                  title: "Onboarding",
-                  desc: "We start by diving deep into your brand identity, business goals, and technical foundations to align our approach.",
-                  icon: "Target"
-                },
-                {
-                  step: "02",
-                  title: "Prompt analysis",
-                  desc: "We analyze thousands of industry-specific prompts to understand exactly how AI models perceive and categorize your sector.",
-                  icon: "Search"
-                },
-                {
-                  step: "03",
-                  title: "Competitor analysis",
-                  desc: "A surgical breakdown of why your competitors are winning (or losing) in AI answers, uncovering their source authority.",
-                  icon: "Activity"
-                },
-                {
-                  step: "04",
-                  title: "Strategy building",
-                  desc: "The culmination: a clear, actionable roadmap for dominant AI visibility across all major platforms.",
-                  icon: "Layers"
-                }
-              ].map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 1, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
-                  className="surface-plate p-10 md:p-12 rounded-[3rem] border border-black/[0.03] shadow-sm relative overflow-hidden group hover:shadow-xl transition-all duration-700"
-                >
-                  <div className="mb-16 flex justify-between items-start">
-                    <span className="text-[11px] font-bold tracking-[0.3em] text-ink/10 group-hover:text-ink/30 transition-colors">
-                      STG. {item.step}
-                    </span>
-                    <Hexagon size={12} outline className="text-ink/10 group-hover:text-ink/40 transition-colors" />
-                  </div>
-                  
-                  <h3 className="text-2xl md:text-3xl font-nixie mb-6 text-ink">{item.title}</h3>
-                  <p className="text-sm md:text-base font-light leading-relaxed text-ink/50 group-hover:text-ink/80 transition-colors">
-                    {item.desc}
-                  </p>
-
-                  <div className="absolute -bottom-8 -right-8 opacity-[0.02] group-hover:opacity-[0.05] transition-opacity duration-700 pointer-events-none">
-                    <Hexagon size={180} outline className="text-ink rotate-12" />
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Screen 3: Pricing Cards */}
+        {/* ── PRICING ──────────────────────────────────────────────────────── */}
         <ScrollSection className="py-32 md:py-48 bg-surface-50 border-b border-ink/[0.04]" speed={1.2}>
           <div className="absolute inset-0 bg-dot-pattern opacity-[0.8] mix-blend-multiply pointer-events-none" />
           <div className="absolute inset-0 -z-20 opacity-[0.03]">
@@ -459,7 +520,7 @@ export const Home = () => {
               style={{ opacity: 0, willChange: "opacity" }}
               className="grid grid-cols-1 lg:grid-cols-3 gap-10 max-w-6xl mx-auto"
             >
-              {/* Card 1 - Ongoing AI Visibility */}
+              {/* Card 1 */}
               <motion.div 
                 variants={pricingCardVariants}
                 className="p-12 surface-plate transition-all duration-700 flex flex-col hover:-translate-y-2 group relative overflow-hidden"
@@ -470,15 +531,7 @@ export const Home = () => {
                   <div className="flex items-baseline gap-1"><span className="text-5xl font-nixie text-ink">$290</span><span className="text-sm font-sans text-ink/40 ml-1 font-normal">/mo</span></div>
                 </div>
                 <ul className="space-y-5 mb-14 flex-grow">
-                  {[
-                    "Monthly AI tracking",
-                    "Competitor tracking",
-                    "Content opportunities",
-                    "Citation opportunities",
-                    "Monthly report",
-                    "Dashboard access",
-                    "Platform early access"
-                  ].map(feature => (
+                  {["Monthly AI tracking","Competitor tracking","Content opportunities","Citation opportunities","Monthly report","Dashboard access","Platform early access"].map(feature => (
                     <li key={feature} className="flex items-center gap-4 text-sm text-ink/60 font-light group-hover:text-ink/90 transition-colors">
                       <Hexagon size={6} className="bg-ink/15 group-hover:bg-ink/40 transition-colors" /> {feature}
                     </li>
@@ -492,7 +545,7 @@ export const Home = () => {
                 </button>
               </motion.div>
 
-              {/* Card 2 - AI Visibility Strategy */}
+              {/* Card 2 */}
               <motion.div 
                 variants={pricingCardVariants}
                 className="p-12 surface-plate transition-all duration-700 flex flex-col hover:-translate-y-2 group relative overflow-hidden"
@@ -503,15 +556,7 @@ export const Home = () => {
                   <div className="text-5xl font-nixie text-ink">$490</div>
                 </div>
                 <ul className="space-y-5 mb-14 flex-grow">
-                  {[
-                    "Industry AI analysis",
-                    "Competitor visibility",
-                    "Citation/source analysis",
-                    "Page recommendations",
-                    "Off-page opportunities",
-                    "Positioning guide",
-                    "Strategic roadmap"
-                  ].map(feature => (
+                  {["Industry AI analysis","Competitor visibility","Citation/source analysis","Page recommendations","Off-page opportunities","Positioning guide","Strategic roadmap"].map(feature => (
                     <li key={feature} className="flex items-center gap-4 text-sm text-ink/60 font-light group-hover:text-ink/90 transition-colors">
                       <Hexagon size={6} className="bg-ink/15 group-hover:bg-ink/40 transition-colors" /> {feature}
                     </li>
@@ -525,7 +570,7 @@ export const Home = () => {
                 </button>
               </motion.div>
 
-              {/* Card 3 - Strategy + Consulting (Featured) */}
+              {/* Card 3 - Featured */}
               <motion.div 
                 variants={pricingCardVariants}
                 className="p-12 surface-plate-dark transition-all duration-700 flex flex-col group hover:-translate-y-2 scale-[1.02] hover:scale-[1.04] z-10 relative overflow-hidden"
@@ -536,13 +581,7 @@ export const Home = () => {
                   <div className="text-5xl font-nixie text-white">$890</div>
                 </div>
                 <ul className="space-y-5 mb-14 flex-grow">
-                  {[
-                    "Everything in Strategy",
-                    "Consulting calls",
-                    "Implementation guidance",
-                    "Content prioritization",
-                    "Follow-up recommendations"
-                  ].map(feature => (
+                  {["Everything in Strategy","Consulting calls","Implementation guidance","Content prioritization","Follow-up recommendations"].map(feature => (
                     <li key={feature} className="flex items-center gap-4 text-sm text-white/70 font-light group-hover:text-white transition-colors">
                       <Hexagon size={6} className="bg-white/30 group-hover:bg-white/50 transition-colors" /> {feature}
                     </li>
@@ -559,7 +598,7 @@ export const Home = () => {
           </div>
         </ScrollSection>
 
-        {/* Screen 4: Platform / Early Access + Final CTA */}
+        {/* ── PLATFORM CTA ──────────────────────────────────────────────────── */}
         <ScrollSection className="py-40 md:py-64 bg-surface-50 relative overflow-hidden" speed={0.6}>
           <div className="absolute inset-0 bg-dot-pattern opacity-[0.8] mix-blend-multiply pointer-events-none" />
           <div className="absolute inset-0 -z-20 opacity-[0.06]">
