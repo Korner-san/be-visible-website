@@ -4,7 +4,6 @@ import { Hexagon } from "../components/Hexagon";
 import { useNavigate } from "react-router-dom";
 import Grainient from "../components/Grainient";
 import { useBooking } from "../App";
-import GradualBlur from "../components/GradualBlur";
 
 const ScrollSection = ({ children, className = "", speed = 1 }: { children: React.ReactNode, className?: string, speed?: number }) => {
   const ref = useRef(null);
@@ -413,19 +412,7 @@ export const Home = () => {
           </div>
 
           {/* ── GRADIENT EXIT: black → surface-50 ── */}
-          <div className="relative h-48 md:h-64 pointer-events-none overflow-hidden w-full">
-            <div className="absolute inset-0 bg-gradient-to-b from-ink to-surface-50" />
-            <GradualBlur 
-              target="parent"
-              position="bottom"
-              height="100%"
-              strength={3}
-              divCount={7}
-              curve="bezier"
-              exponential
-              opacity={1}
-            />
-          </div>
+          <div className="h-48 md:h-64 bg-gradient-to-b from-ink to-surface-50 pointer-events-none" />
         </section>
 
         {/* ── LIGHT SECTION: VERTICAL ROADMAP ──────────────────────────────── */}
