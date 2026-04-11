@@ -412,7 +412,19 @@ export const Home = () => {
           </div>
 
           {/* ── GRADIENT EXIT: black → surface-50 ── */}
-          <div className="h-48 md:h-64 bg-gradient-to-b from-ink to-surface-50 pointer-events-none" />
+          <div className="relative h-48 md:h-72 pointer-events-none w-full overflow-hidden">
+            {/* The light section base sitting underneath */}
+            <div className="absolute inset-0 bg-surface-50" />
+            
+            {/* Smooth engineered fade of the dark section downwards (eased out via multiple stops) */}
+            <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/90 via-[25%] to-ink/0" />
+            
+            {/* Soft secondary fade pushing up to cushion the landing into the light area */}
+            <div className="absolute inset-0 bg-gradient-to-t from-surface-50 via-surface-50/70 via-[30%] to-transparent" />
+            
+            {/* Extremely subtle optical border line blending element */}
+            <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-black/[0.03] to-transparent mix-blend-multiply" />
+          </div>
         </section>
 
         {/* ── LIGHT SECTION: VERTICAL ROADMAP ──────────────────────────────── */}
