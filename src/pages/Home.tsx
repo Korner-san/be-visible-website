@@ -414,16 +414,12 @@ export const Home = () => {
                   How we build our strategies
                 </motion.h2>
                 
-                <motion.div
+                <motion.p
                   variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: "easeOut" } } }}
-                  className="relative max-w-xl mx-auto"
+                  className="text-lg md:text-xl text-white/50 font-light max-w-xl mx-auto leading-relaxed"
                 >
-                  {/* Ultra-soft localized atmospheric shadow to ensure readability without forming a hard box */}
-                  <div className="absolute inset-0 bg-black/30 blur-[24px] scale-[1.3] -z-10 rounded-[3rem] pointer-events-none" />
-                  <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
-                    A structured methodology that turns AI citation data into an actionable, measurable visibility plan.
-                  </p>
-                </motion.div>
+                  A structured methodology that turns AI citation data into an actionable, measurable visibility plan.
+                </motion.p>
               </motion.div>
             </ScrollSection>
           </div>
