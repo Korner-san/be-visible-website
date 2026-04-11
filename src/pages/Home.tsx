@@ -364,66 +364,64 @@ export const Home = () => {
               />
             </motion.div>
 
-            {/* ── TRANSITION MOMENT: "How we build our strategies" ── */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-60px" }}
-              variants={{
-                hidden: { opacity: 0 },
-                visible: { opacity: 1, transition: { staggerChildren: 0.18, delayChildren: 0 } }
-              }}
-              className="text-center relative"
-            >
-              {/* Horizontal divider line that grows in */}
+            {/* ── DESIGNED TRANSITION MOMENT ── */}
+          </div>
+          
+          <div className="relative w-full pt-20 pb-40 md:pt-32 md:pb-64 overflow-hidden">
+            {/* Architectural Background Tonal Fade */}
+            <div className="absolute inset-0 pointer-events-none z-0">
+              <div className="absolute inset-0 bg-surface-50" />
+              {/* Deep engineered fade of the dark section downwards */}
+              <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/95 via-[45%] to-transparent" />
+              {/* Soft upward push of the light section to cushion the meeting point */}
+              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-surface-50 via-surface-50/80 via-[40%] to-transparent" />
+            </div>
+
+            {/* Scroll-Choreographed Foreground Text */}
+            <ScrollSection speed={0.3} className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+              {/* Premium hanging connector line */}
               <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
                 variants={{
-                  hidden: { scaleX: 0 },
-                  visible: { scaleX: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
+                  hidden: { height: 0, opacity: 0 },
+                  visible: { height: 120, opacity: 1, transition: { duration: 1.5, ease: [0.16, 1, 0.3, 1] } }
                 }}
-                className="w-px h-20 bg-gradient-to-b from-transparent via-white/20 to-white/5 mx-auto mb-14 origin-top"
+                className="w-px bg-gradient-to-b from-white/30 via-white/5 to-transparent mx-auto mb-16 origin-top"
               />
 
-              <motion.span
-                variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
-                className="text-[9px] font-bold tracking-[0.55em] uppercase text-white/25 block mb-5"
-              >
-                Our Process
-              </motion.span>
-
-              <motion.h2
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-80px" }}
                 variants={{
-                  hidden: { opacity: 0, y: 24, scale: 0.97 },
-                  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 1.4, ease: [0.16, 1, 0.3, 1] } }
+                  hidden: { opacity: 0 },
+                  visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
                 }}
-                className="text-4xl md:text-6xl lg:text-7xl font-nixie tracking-tight text-white"
               >
-                How we build our strategies
-              </motion.h2>
-
-              <motion.p
-                variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] } } }}
-                className="mt-6 text-base text-white/35 font-light max-w-md mx-auto leading-relaxed"
-              >
-                A four-stage process that turns AI data into a ready-to-execute visibility strategy.
-              </motion.p>
-            </motion.div>
-
-          </div>
-
-          {/* ── GRADIENT EXIT: black → surface-50 ── */}
-          <div className="relative h-48 md:h-72 pointer-events-none w-full overflow-hidden">
-            {/* The light section base sitting underneath */}
-            <div className="absolute inset-0 bg-surface-50" />
-            
-            {/* Smooth engineered fade of the dark section downwards (eased out via multiple stops) */}
-            <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/90 via-[25%] to-ink/0" />
-            
-            {/* Soft secondary fade pushing up to cushion the landing into the light area */}
-            <div className="absolute inset-0 bg-gradient-to-t from-surface-50 via-surface-50/70 via-[30%] to-transparent" />
-            
-            {/* Extremely subtle optical border line blending element */}
-            <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-black/[0.03] to-transparent mix-blend-multiply" />
+                <motion.span
+                  variants={{ hidden: { opacity: 0, y: 15 }, visible: { opacity: 1, y: 0, transition: { duration: 1.1, ease: "easeOut" } } }}
+                  className="text-[10px] font-bold tracking-[0.55em] uppercase text-white/50 block mb-6 drop-shadow-sm"
+                >
+                  Our Process
+                </motion.span>
+                
+                <motion.h2
+                  variants={{ hidden: { opacity: 0, y: 30, scale: 0.95 }, visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 1.4, ease: [0.16, 1, 0.3, 1] } } }}
+                  className="text-4xl md:text-6xl lg:text-7xl font-nixie tracking-tighter text-white mb-8 drop-shadow-xl"
+                >
+                  How we build our strategies
+                </motion.h2>
+                
+                <motion.p
+                  variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: "easeOut" } } }}
+                  className="text-lg md:text-xl text-white/50 font-light max-w-xl mx-auto leading-relaxed"
+                >
+                  A structured methodology that turns AI citation data into an actionable, measurable visibility plan.
+                </motion.p>
+              </motion.div>
+            </ScrollSection>
           </div>
         </section>
 
