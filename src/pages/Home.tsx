@@ -4,7 +4,6 @@ import { Hexagon } from "../components/Hexagon";
 import { useNavigate } from "react-router-dom";
 import Grainient from "../components/Grainient";
 import { useBooking } from "../App";
-import GradualBlur from "../components/GradualBlur";
 
 const ScrollSection = ({ children, className = "", speed = 1 }: { children: React.ReactNode, className?: string, speed?: number }) => {
   const ref = useRef(null);
@@ -412,25 +411,8 @@ export const Home = () => {
 
           </div>
 
-          {/* ── GRADUAL BLUR TRANSITION: ink → surface-50 ── */}
-          {/* A layered handoff zone: the page surface shifts to surface-50 below,
-              and GradualBlur diffuses the boundary with a crafted blur fade. */}
-          <div className="relative h-56 md:h-72 overflow-hidden">
-            {/* Background: the arriving light surface */}
-            <div className="absolute inset-0 bg-surface-50" />
-            {/* GradualBlur applied from the top — blurs the dark section edge downward */}
-            <GradualBlur
-              target="parent"
-              position="bottom"
-              height="100%"
-              strength={3.5}
-              divCount={9}
-              curve="bezier"
-              exponential
-              opacity={1}
-              zIndex={10}
-            />
-          </div>
+          {/* ── GRADIENT EXIT: black → surface-50 ── */}
+          <div className="h-48 md:h-64 bg-gradient-to-b from-ink to-surface-50 pointer-events-none" />
         </section>
 
         {/* ── LIGHT SECTION: VERTICAL ROADMAP ──────────────────────────────── */}
