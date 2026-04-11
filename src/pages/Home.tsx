@@ -416,7 +416,7 @@ export const Home = () => {
                 
                 <motion.p
                   variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: "easeOut" } } }}
-                  className="text-lg md:text-xl text-white/50 font-light max-w-xl mx-auto leading-relaxed"
+                  className="text-lg md:text-xl text-white/80 font-light max-w-xl mx-auto leading-relaxed"
                 >
                   A structured methodology that turns AI citation data into an actionable, measurable visibility plan.
                 </motion.p>
