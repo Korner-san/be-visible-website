@@ -4,7 +4,6 @@ import { Hexagon } from "../components/Hexagon";
 import { useNavigate } from "react-router-dom";
 import Grainient from "../components/Grainient";
 import { useBooking } from "../App";
-import GradualBlur from "../components/GradualBlur";
 
 const ScrollSection = ({ children, className = "", speed = 1 }: { children: React.ReactNode, className?: string, speed?: number }) => {
   const ref = useRef(null);
@@ -411,30 +410,9 @@ export const Home = () => {
             </motion.div>
 
           </div>
-        </section>
 
-        {/* ── TRUE BLUR TRANSITION ─────────────────────────────────────────── */}
-        <section className="relative h-[250px] md:h-[350px] w-full flex items-center justify-center overflow-hidden z-20 pointer-events-none -mt-1">
-          {/* 1. Underlying soft color handoff */}
-          <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/80 to-surface-50 -z-30" />
-          
-          {/* 2. Textured background extending from the black section, giving the blur something to act on */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:28px_28px] opacity-60 -z-20"
-               style={{ WebkitMaskImage: 'linear-gradient(to bottom, black 0%, transparent 95%)', maskImage: 'linear-gradient(to bottom, black 0%, transparent 95%)' }} />
-
-          {/* 3. A central neural connecting line that crosses the boundary and visually gets blurred */}
-          <div className="w-px h-full bg-gradient-to-b from-white/20 via-white/10 to-transparent relative -z-10" />
-
-          {/* 4. The requested ReactBits GradualBlur component */}
-          {/* Position "bottom" makes the heaviest blur occur just before the white section begins */}
-          <GradualBlur 
-            position="bottom" 
-            height="100%" 
-            strength={12} 
-            divCount={12} 
-            curve="ease-in-out" 
-            zIndex={10}
-          />
+          {/* ── GRADIENT EXIT: black → surface-50 ── */}
+          <div className="h-48 md:h-64 bg-gradient-to-b from-ink to-surface-50 pointer-events-none" />
         </section>
 
         {/* ── LIGHT SECTION: VERTICAL ROADMAP ──────────────────────────────── */}
