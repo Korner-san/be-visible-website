@@ -326,16 +326,20 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 
   return (
     <div
-      className={`relative w-full h-full overflow-y-auto overflow-x-visible ${className}`.trim()}
+      className={`relative w-full overflow-x-visible ${useWindowScroll ? '' : 'h-full overflow-y-auto'} ${className}`.trim()}
       ref={scrollerRef}
-      style={{
-        overscrollBehavior: 'contain',
-        WebkitOverflowScrolling: 'touch',
-        scrollBehavior: 'smooth',
-        WebkitTransform: 'translateZ(0)',
-        transform: 'translateZ(0)',
-        willChange: 'scroll-position'
-      }}
+      style={
+        useWindowScroll
+          ? { willChange: 'scroll-position' }
+          : {
+              overscrollBehavior: 'contain',
+              WebkitOverflowScrolling: 'touch',
+              scrollBehavior: 'smooth',
+              WebkitTransform: 'translateZ(0)',
+              transform: 'translateZ(0)',
+              willChange: 'scroll-position'
+            }
+      }
     >
       <div className="scroll-stack-inner pt-[20vh] px-20 pb-[50rem] min-h-screen">
         {children}

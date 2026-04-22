@@ -441,11 +441,9 @@ export const Home = () => {
           </div>
 
           <div className="section-container py-28 md:py-40">
-            <div className="max-w-3xl mx-auto h-[85vh] w-full mt-10 md:mt-0 relative group">
-              {/* Added a subtle internal scroll hint */}
-              <div className="absolute top-10 right-4 md:-right-12 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-1000 rotate-90 text-[10px] tracking-widest text-ink/30 font-bold uppercase mix-blend-multiply">Scroll</div>
+            <div className="max-w-3xl mx-auto w-full mt-10 md:mt-0 relative group">
               
-              <ScrollStack>
+              <ScrollStack useWindowScroll={true}>
                 <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-between transition-colors hover:border-ink/10">
                   <div>
                     <span className="text-[12px] font-bold tracking-wider text-ink/30 block mb-3">01</span>
