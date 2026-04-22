@@ -122,8 +122,9 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 
       const scaleProgress = calculateProgress(scrollTop, triggerStart, triggerEnd);
       const targetScale = baseScale + i * itemScale;
-      const scale = 1 - scaleProgress * (1 - targetScale);
-      const rotation = rotationAmount ? i * rotationAmount * scaleProgress : 0;
+      // Lock scale to 1 and rotation to 0 unconditionally for stability
+      const scale = 1;
+      const rotation = 0;
 
       let translateY = 0;
       const isPinned = scrollTop >= pinStart && scrollTop <= pinEnd;
@@ -134,26 +135,20 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
         translateY = pinEnd - cardTop + stackPositionPx + itemStackDistance * i;
       }
 
-      // No rounding: preserve infinite decimal precision for buttery smooth GPU matrices
+      // Preserve reasonable GPU decimal precision for smooth translateY
       const newTransform = {
-        translateY: translateY,
-        scale: scale,
-        rotation: rotation
+        translateY: translateY
       };
 
       const lastTransform = lastTransformsRef.current.get(i);
       
-      // Extremely low threshold prevents false-pauses that cause visual jumping
+      // Slightly relaxed threshold (0.05) to prevent micro-vibrations triggers on sub-pixel tracking
       const hasChanged =
         !lastTransform ||
-        Math.abs(lastTransform.translateY - newTransform.translateY) > 0.01 ||
-        Math.abs(lastTransform.scale - newTransform.scale) > 0.0001 ||
-        Math.abs(lastTransform.rotation - newTransform.rotation) > 0.01;
+        Math.abs(lastTransform.translateY - newTransform.translateY) > 0.05;
 
       if (hasChanged) {
-        const transform = `translate3d(0, ${newTransform.translateY}px, 0) scale(${newTransform.scale}) rotate(${newTransform.rotation}deg)`;
-        
-        card.style.transform = transform;
+        card.style.transform = `translate3d(0, ${newTransform.translateY}px, 0)`;
         lastTransformsRef.current.set(i, newTransform);
       }
 
@@ -191,28 +186,14 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 
   const setupLenis = useCallback(() => {
     if (useWindowScroll) {
-      const lenis = new Lenis({
-        duration: 1.2,
-        easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smoothWheel: true,
-        touchMultiplier: 2,
-        infinite: false,
-        wheelMultiplier: 1,
-        lerp: 0.1,
-        syncTouch: true,
-        syncTouchLerp: 0.075
-      });
-
-      lenis.on('scroll', handleScroll);
-
-      const raf = (time: number) => {
-        lenis.raf(time);
+      // Disabled global Lenis injection to prevent physics engine clashes.
+      // We rely entirely on a clean native rAF loop bound to the window scroll.
+      const raf = () => {
+        handleScroll();
         animationFrameRef.current = requestAnimationFrame(raf);
       };
       animationFrameRef.current = requestAnimationFrame(raf);
-
-      lenisRef.current = lenis;
-      return lenis;
+      return null;
     } else {
       const scroller = scrollerRef.current;
       if (!scroller) return;
