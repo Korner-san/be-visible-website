@@ -446,7 +446,6 @@ export const Home = () => {
                 useWindowScroll={true}
                 itemScale={0.045}
                 itemStackDistance={45}
-                blurAmount={1.2}
                 className="!overflow-visible !h-auto"
               >
                 <ScrollStackItem itemClassName="!h-[26rem] md:!h-[32rem] p-10 md:p-16 bg-white border border-ink/[0.08] flex flex-col justify-between max-w-4xl mx-auto shadow-[0_20px_60px_-20px_rgba(0,0,0,0.05)]">
