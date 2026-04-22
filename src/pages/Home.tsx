@@ -440,92 +440,78 @@ export const Home = () => {
             />
           </div>
 
-          <div className="section-container relative z-10 w-full max-w-4xl mx-auto -mt-20">
-            <div className="w-full">
-              <ScrollStack 
-                useWindowScroll={true} 
-                itemDistance={500} 
-                itemStackDistance={50} 
-                baseScale={0.9} 
-                itemScale={0.05} 
-                scaleDuration={0.8} 
-                blurAmount={2}
-                stackPosition="30%"
-              >
-                <ScrollStackItem>
-                  <div className="flex flex-col h-full text-left">
-                    <div className="w-10 h-10 mb-6 rounded-full border border-ink/15 bg-ink/[0.02] flex items-center justify-center">
-                      <span className="text-[10px] font-bold tracking-wider text-ink/40">01</span>
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-nixie font-bold text-ink tracking-tight mb-4">Onboarding</h3>
-                    <p className="text-base text-ink/50 font-light leading-relaxed mb-8 max-w-xl">
+          <div className="section-container py-28 md:py-40">
+            <div className="max-w-3xl mx-auto h-[85vh] w-full mt-10 md:mt-0 relative group">
+              {/* Added a subtle internal scroll hint */}
+              <div className="absolute top-10 right-4 md:-right-12 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-1000 rotate-90 text-[10px] tracking-widest text-ink/30 font-bold uppercase mix-blend-multiply">Scroll</div>
+              
+              <ScrollStack>
+                <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-between transition-colors hover:border-ink/10">
+                  <div>
+                    <span className="text-[12px] font-bold tracking-wider text-ink/30 block mb-3">01</span>
+                    <h3 className="text-2xl md:text-3xl font-bold text-ink tracking-tight mb-3">Onboarding</h3>
+                    <p className="text-sm md:text-base text-ink/50 font-light leading-relaxed max-w-lg">
                       We align on your brand, positioning, target audience, and core competitors to establish a clear strategic baseline.
                     </p>
-                    <ul className="flex flex-wrap gap-2 mt-auto">
-                      {["Brand positioning", "Competitor identification", "Target market clarity", "Initial AI snapshot"].map(item => (
-                        <li key={item} className="text-[11px] font-medium text-ink/50 tracking-wide bg-ink/[0.04] px-3 py-1.5 rounded-full border border-ink/[0.06]">
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
                   </div>
+                  <ul className="flex flex-wrap gap-2 mt-6">
+                    {["Brand positioning", "Competitor identification", "Target market clarity", "Initial AI snapshot"].map(item => (
+                      <li key={item} className="text-[10px] font-bold text-ink/50 tracking-widest uppercase bg-ink/[0.03] px-3 py-1.5 rounded-full border border-ink/[0.06]">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </ScrollStackItem>
 
-                <ScrollStackItem>
-                  <div className="flex flex-col h-full text-left">
-                    <div className="w-10 h-10 mb-6 rounded-full border border-ink/15 bg-ink/[0.02] flex items-center justify-center">
-                      <span className="text-[10px] font-bold tracking-wider text-ink/40">02</span>
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-nixie font-bold text-ink tracking-tight mb-4">Prompt analysis</h3>
-                    <p className="text-base text-ink/50 font-light leading-relaxed mb-8 max-w-xl">
+                <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-between transition-colors hover:border-ink/10">
+                  <div>
+                    <span className="text-[12px] font-bold tracking-wider text-ink/30 block mb-3">02</span>
+                    <h3 className="text-2xl md:text-3xl font-bold text-ink tracking-tight mb-3">Prompt analysis</h3>
+                    <p className="text-sm md:text-base text-ink/50 font-light leading-relaxed max-w-lg">
                       We systematically test how AI models respond to the prompts your potential customers are actually asking — and map where you stand.
                     </p>
-                    <ul className="flex flex-wrap gap-2 mt-auto">
-                      {["Prompt landscape mapping", "Mention rate analysis", "Share of voice scoring", "AI model coverage"].map(item => (
-                        <li key={item} className="text-[11px] font-medium text-ink/50 tracking-wide bg-ink/[0.04] px-3 py-1.5 rounded-full border border-ink/[0.06]">
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
                   </div>
+                  <ul className="flex flex-wrap gap-2 mt-6">
+                    {["Prompt landscape mapping", "Mention rate analysis", "Share of voice scoring", "AI model coverage"].map(item => (
+                      <li key={item} className="text-[10px] font-bold text-ink/50 tracking-widest uppercase bg-ink/[0.03] px-3 py-1.5 rounded-full border border-ink/[0.06]">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </ScrollStackItem>
 
-                <ScrollStackItem>
-                  <div className="flex flex-col h-full text-left">
-                    <div className="w-10 h-10 mb-6 rounded-full border border-ink/15 bg-ink/[0.02] flex items-center justify-center">
-                      <span className="text-[10px] font-bold tracking-wider text-ink/40">03</span>
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-nixie font-bold text-ink tracking-tight mb-4">Competitor analysis</h3>
-                    <p className="text-base text-ink/50 font-light leading-relaxed mb-8 max-w-xl">
+                <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-between transition-colors hover:border-ink/10">
+                  <div>
+                    <span className="text-[12px] font-bold tracking-wider text-ink/30 block mb-3">03</span>
+                    <h3 className="text-2xl md:text-3xl font-bold text-ink tracking-tight mb-3">Competitor analysis</h3>
+                    <p className="text-sm md:text-base text-ink/50 font-light leading-relaxed max-w-lg">
                       We identify which competitors appear in AI answers, what content they have, and which off-page sources are elevating their visibility.
                     </p>
-                    <ul className="flex flex-wrap gap-2 mt-auto">
-                      {["Competitor mention tracking", "Source & citation mapping", "Content gap identification", "Positioning benchmark"].map(item => (
-                        <li key={item} className="text-[11px] font-medium text-ink/50 tracking-wide bg-ink/[0.04] px-3 py-1.5 rounded-full border border-ink/[0.06]">
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
                   </div>
+                  <ul className="flex flex-wrap gap-2 mt-6">
+                    {["Competitor mention tracking", "Source & citation mapping", "Content gap identification", "Positioning benchmark"].map(item => (
+                      <li key={item} className="text-[10px] font-bold text-ink/50 tracking-widest uppercase bg-ink/[0.03] px-3 py-1.5 rounded-full border border-ink/[0.06]">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </ScrollStackItem>
 
-                <ScrollStackItem>
-                  <div className="flex flex-col h-full text-left">
-                    <div className="w-10 h-10 mb-6 rounded-full border border-ink/15 bg-ink/[0.02] flex items-center justify-center">
-                      <span className="text-[10px] font-bold tracking-wider text-ink/40">04</span>
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-nixie font-bold text-ink tracking-tight mb-4">Strategy building</h3>
-                    <p className="text-base text-ink/50 font-light leading-relaxed mb-8 max-w-xl">
+                <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-between transition-colors hover:border-ink/10">
+                  <div>
+                    <span className="text-[12px] font-bold tracking-wider text-ink/30 block mb-3">04</span>
+                    <h3 className="text-2xl md:text-3xl font-bold text-ink tracking-tight mb-3">Strategy building</h3>
+                    <p className="text-sm md:text-base text-ink/50 font-light leading-relaxed max-w-lg">
                       We synthesize everything into a complete, executable AI visibility roadmap — covering content, citations, positioning, and off-page priorities.
                     </p>
-                    <ul className="flex flex-wrap gap-2 mt-auto">
-                      {["Strategic roadmap", "Content priorities", "Citation targets", "Off-page action plan"].map(item => (
-                        <li key={item} className="text-[11px] font-medium text-ink/50 tracking-wide bg-ink/[0.04] px-3 py-1.5 rounded-full border border-ink/[0.06]">
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
                   </div>
+                  <ul className="flex flex-wrap gap-2 mt-6">
+                    {["Strategic roadmap", "Content priorities", "Citation targets", "Off-page action plan"].map(item => (
+                      <li key={item} className="text-[10px] font-bold text-ink/50 tracking-widest uppercase bg-ink/[0.03] px-3 py-1.5 rounded-full border border-ink/[0.06]">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </ScrollStackItem>
               </ScrollStack>
             </div>

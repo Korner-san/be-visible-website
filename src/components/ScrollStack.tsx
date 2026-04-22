@@ -9,16 +9,13 @@ export interface ScrollStackItemProps {
 
 export const ScrollStackItem: React.FC<ScrollStackItemProps> = ({ children, itemClassName = '' }) => (
   <div
-    className={`scroll-stack-card relative w-full min-h-[320px] my-8 p-10 md:p-14 rounded-[2.5rem] bg-white border border-ink/[0.06] shadow-[0_12px_48px_rgba(0,0,0,0.04)] box-border origin-top will-change-transform overflow-hidden ${itemClassName}`.trim()}
+    className={`scroll-stack-card relative w-full h-80 my-8 p-12 rounded-[40px] shadow-[0_0_30px_rgba(0,0,0,0.1)] box-border origin-top will-change-transform ${itemClassName}`.trim()}
     style={{
       backfaceVisibility: 'hidden',
       transformStyle: 'preserve-3d'
     }}
   >
-    <div className="absolute inset-0 bg-gradient-to-br from-white to-transparent pointer-events-none opacity-60" />
-    <div className="relative z-10">
-      {children}
-    </div>
+    {children}
   </div>
 );
 
@@ -327,18 +324,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     updateCardTransforms
   ]);
 
-  return useWindowScroll ? (
-    <div
-      className={`relative w-full ${className}`.trim()}
-      ref={scrollerRef}
-    >
-      <div className="scroll-stack-inner w-full pb-[40rem]">
-        {children}
-        {/* Spacer so the last pin can release cleanly */}
-        <div className="scroll-stack-end w-full h-px" />
-      </div>
-    </div>
-  ) : (
+  return (
     <div
       className={`relative w-full h-full overflow-y-auto overflow-x-visible ${className}`.trim()}
       ref={scrollerRef}
