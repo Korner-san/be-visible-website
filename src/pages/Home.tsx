@@ -4,6 +4,7 @@ import { Hexagon } from "../components/Hexagon";
 import { useNavigate } from "react-router-dom";
 import Grainient from "../components/Grainient";
 import { useBooking } from "../App";
+import ScrollStack, { ScrollStackItem } from "../components/ScrollStack";
 
 const ScrollSection = ({ children, className = "", speed = 1 }: { children: React.ReactNode, className?: string, speed?: number }) => {
   const ref = useRef(null);
@@ -439,40 +440,86 @@ export const Home = () => {
             />
           </div>
 
-          <div className="section-container py-28 md:py-40">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
-              variants={roadmapContainerVariants}
-              className="max-w-2xl mx-auto"
-            >
-              <RoadmapStage
-                step="01"
-                title="Onboarding"
-                desc="We align on your brand, positioning, target audience, and core competitors to establish a clear strategic baseline."
-                items={["Brand positioning", "Competitor identification", "Target market clarity", "Initial AI snapshot"]}
-              />
-              <RoadmapStage
-                step="02"
-                title="Prompt analysis"
-                desc="We systematically test how AI models respond to the prompts your potential customers are actually asking — and map where you stand."
-                items={["Prompt landscape mapping", "Mention rate analysis", "Share of voice scoring", "AI model coverage"]}
-              />
-              <RoadmapStage
-                step="03"
-                title="Competitor analysis"
-                desc="We identify which competitors appear in AI answers, what content they have, and which off-page sources are elevating their visibility."
-                items={["Competitor mention tracking", "Source & citation mapping", "Content gap identification", "Positioning benchmark"]}
-              />
-              <RoadmapStage
-                step="04"
-                title="Strategy building"
-                desc="We synthesize everything into a complete, executable AI visibility roadmap — covering content, citations, positioning, and off-page priorities."
-                items={["Strategic roadmap", "Content priorities", "Citation targets", "Off-page action plan"]}
-                isLast
-              />
-            </motion.div>
+          <div className="section-container relative z-10 w-full max-w-4xl mx-auto -mt-20">
+            <div className="w-full">
+              <ScrollStack useWindowScroll={true} itemDistance={60} baseScale={0.9} itemScale={0.05} scaleDuration={0.8} blurAmount={2}>
+                <ScrollStackItem>
+                  <div className="flex flex-col h-full text-left">
+                    <div className="w-10 h-10 mb-6 rounded-full border border-ink/15 bg-ink/[0.02] flex items-center justify-center">
+                      <span className="text-[10px] font-bold tracking-wider text-ink/40">01</span>
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-nixie font-bold text-ink tracking-tight mb-4">Onboarding</h3>
+                    <p className="text-base text-ink/50 font-light leading-relaxed mb-8 max-w-xl">
+                      We align on your brand, positioning, target audience, and core competitors to establish a clear strategic baseline.
+                    </p>
+                    <ul className="flex flex-wrap gap-2 mt-auto">
+                      {["Brand positioning", "Competitor identification", "Target market clarity", "Initial AI snapshot"].map(item => (
+                        <li key={item} className="text-[11px] font-medium text-ink/50 tracking-wide bg-ink/[0.04] px-3 py-1.5 rounded-full border border-ink/[0.06]">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </ScrollStackItem>
+
+                <ScrollStackItem>
+                  <div className="flex flex-col h-full text-left">
+                    <div className="w-10 h-10 mb-6 rounded-full border border-ink/15 bg-ink/[0.02] flex items-center justify-center">
+                      <span className="text-[10px] font-bold tracking-wider text-ink/40">02</span>
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-nixie font-bold text-ink tracking-tight mb-4">Prompt analysis</h3>
+                    <p className="text-base text-ink/50 font-light leading-relaxed mb-8 max-w-xl">
+                      We systematically test how AI models respond to the prompts your potential customers are actually asking — and map where you stand.
+                    </p>
+                    <ul className="flex flex-wrap gap-2 mt-auto">
+                      {["Prompt landscape mapping", "Mention rate analysis", "Share of voice scoring", "AI model coverage"].map(item => (
+                        <li key={item} className="text-[11px] font-medium text-ink/50 tracking-wide bg-ink/[0.04] px-3 py-1.5 rounded-full border border-ink/[0.06]">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </ScrollStackItem>
+
+                <ScrollStackItem>
+                  <div className="flex flex-col h-full text-left">
+                    <div className="w-10 h-10 mb-6 rounded-full border border-ink/15 bg-ink/[0.02] flex items-center justify-center">
+                      <span className="text-[10px] font-bold tracking-wider text-ink/40">03</span>
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-nixie font-bold text-ink tracking-tight mb-4">Competitor analysis</h3>
+                    <p className="text-base text-ink/50 font-light leading-relaxed mb-8 max-w-xl">
+                      We identify which competitors appear in AI answers, what content they have, and which off-page sources are elevating their visibility.
+                    </p>
+                    <ul className="flex flex-wrap gap-2 mt-auto">
+                      {["Competitor mention tracking", "Source & citation mapping", "Content gap identification", "Positioning benchmark"].map(item => (
+                        <li key={item} className="text-[11px] font-medium text-ink/50 tracking-wide bg-ink/[0.04] px-3 py-1.5 rounded-full border border-ink/[0.06]">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </ScrollStackItem>
+
+                <ScrollStackItem>
+                  <div className="flex flex-col h-full text-left">
+                    <div className="w-10 h-10 mb-6 rounded-full border border-ink/15 bg-ink/[0.02] flex items-center justify-center">
+                      <span className="text-[10px] font-bold tracking-wider text-ink/40">04</span>
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-nixie font-bold text-ink tracking-tight mb-4">Strategy building</h3>
+                    <p className="text-base text-ink/50 font-light leading-relaxed mb-8 max-w-xl">
+                      We synthesize everything into a complete, executable AI visibility roadmap — covering content, citations, positioning, and off-page priorities.
+                    </p>
+                    <ul className="flex flex-wrap gap-2 mt-auto">
+                      {["Strategic roadmap", "Content priorities", "Citation targets", "Off-page action plan"].map(item => (
+                        <li key={item} className="text-[11px] font-medium text-ink/50 tracking-wide bg-ink/[0.04] px-3 py-1.5 rounded-full border border-ink/[0.06]">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </ScrollStackItem>
+              </ScrollStack>
+            </div>
 
             {/* CTA after roadmap */}
             <motion.div
