@@ -442,7 +442,16 @@ export const Home = () => {
 
           <div className="section-container relative z-10 w-full max-w-4xl mx-auto -mt-20">
             <div className="w-full">
-              <ScrollStack useWindowScroll={true} itemDistance={60} baseScale={0.9} itemScale={0.05} scaleDuration={0.8} blurAmount={2}>
+              <ScrollStack 
+                useWindowScroll={true} 
+                itemDistance={500} 
+                itemStackDistance={50} 
+                baseScale={0.9} 
+                itemScale={0.05} 
+                scaleDuration={0.8} 
+                blurAmount={2}
+                stackPosition="30%"
+              >
                 <ScrollStackItem>
                   <div className="flex flex-col h-full text-left">
                     <div className="w-10 h-10 mb-6 rounded-full border border-ink/15 bg-ink/[0.02] flex items-center justify-center">
