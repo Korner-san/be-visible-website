@@ -327,7 +327,18 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     updateCardTransforms
   ]);
 
-  return (
+  return useWindowScroll ? (
+    <div
+      className={`relative w-full ${className}`.trim()}
+      ref={scrollerRef}
+    >
+      <div className="scroll-stack-inner w-full pb-[40rem]">
+        {children}
+        {/* Spacer so the last pin can release cleanly */}
+        <div className="scroll-stack-end w-full h-px" />
+      </div>
+    </div>
+  ) : (
     <div
       className={`relative w-full h-full overflow-y-auto overflow-x-visible ${className}`.trim()}
       ref={scrollerRef}
