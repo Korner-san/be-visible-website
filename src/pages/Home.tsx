@@ -441,73 +441,76 @@ export const Home = () => {
           </div>
 
           <div className="section-container py-28 md:py-40">
-            <div className="max-w-3xl mx-auto h-[85vh] w-full mt-10 md:mt-0 relative group">
-              {/* Added a subtle internal scroll hint */}
-              <div className="absolute top-10 right-4 md:-right-12 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-1000 rotate-90 text-[10px] tracking-widest text-ink/30 font-bold uppercase mix-blend-multiply">Scroll</div>
-              
-              <ScrollStack>
-                <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-between transition-colors hover:border-ink/10">
+            <div className="w-full mt-10 md:mt-0 relative -mx-4 md:mx-0">
+              <ScrollStack
+                useWindowScroll={true}
+                itemScale={0.045}
+                itemStackDistance={45}
+                blurAmount={1.2}
+                className="!overflow-visible !h-auto"
+              >
+                <ScrollStackItem itemClassName="!h-[26rem] md:!h-[32rem] p-10 md:p-16 bg-white border border-ink/[0.08] flex flex-col justify-between max-w-4xl mx-auto shadow-[0_20px_60px_-20px_rgba(0,0,0,0.05)]">
                   <div>
-                    <span className="text-[12px] font-bold tracking-wider text-ink/30 block mb-3">01</span>
-                    <h3 className="text-2xl md:text-3xl font-bold text-ink tracking-tight mb-3">Onboarding</h3>
-                    <p className="text-sm md:text-base text-ink/50 font-light leading-relaxed max-w-lg">
+                    <span className="text-[12px] font-bold tracking-widest uppercase text-ink/30 block mb-4">01</span>
+                    <h3 className="text-3xl md:text-5xl font-nixie font-bold text-ink tracking-tighter mb-4">Onboarding</h3>
+                    <p className="text-base md:text-lg text-ink/60 font-light leading-relaxed max-w-xl">
                       We align on your brand, positioning, target audience, and core competitors to establish a clear strategic baseline.
                     </p>
                   </div>
-                  <ul className="flex flex-wrap gap-2 mt-6">
+                  <ul className="flex flex-wrap gap-2 mt-auto">
                     {["Brand positioning", "Competitor identification", "Target market clarity", "Initial AI snapshot"].map(item => (
-                      <li key={item} className="text-[10px] font-bold text-ink/50 tracking-widest uppercase bg-ink/[0.03] px-3 py-1.5 rounded-full border border-ink/[0.06]">
+                      <li key={item} className="text-[11px] md:text-xs font-medium text-ink/60 tracking-wider bg-ink/[0.03] px-4 py-2 rounded-full border border-ink/[0.06]">
                         {item}
                       </li>
                     ))}
                   </ul>
                 </ScrollStackItem>
 
-                <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-between transition-colors hover:border-ink/10">
+                <ScrollStackItem itemClassName="!h-[26rem] md:!h-[32rem] p-10 md:p-16 bg-white border border-ink/[0.08] flex flex-col justify-between max-w-4xl mx-auto shadow-[0_20px_60px_-20px_rgba(0,0,0,0.05)]">
                   <div>
-                    <span className="text-[12px] font-bold tracking-wider text-ink/30 block mb-3">02</span>
-                    <h3 className="text-2xl md:text-3xl font-bold text-ink tracking-tight mb-3">Prompt analysis</h3>
-                    <p className="text-sm md:text-base text-ink/50 font-light leading-relaxed max-w-lg">
+                    <span className="text-[12px] font-bold tracking-widest uppercase text-ink/30 block mb-4">02</span>
+                    <h3 className="text-3xl md:text-5xl font-nixie font-bold text-ink tracking-tighter mb-4">Prompt analysis</h3>
+                    <p className="text-base md:text-lg text-ink/60 font-light leading-relaxed max-w-xl">
                       We systematically test how AI models respond to the prompts your potential customers are actually asking — and map where you stand.
                     </p>
                   </div>
-                  <ul className="flex flex-wrap gap-2 mt-6">
+                  <ul className="flex flex-wrap gap-2 mt-auto">
                     {["Prompt landscape mapping", "Mention rate analysis", "Share of voice scoring", "AI model coverage"].map(item => (
-                      <li key={item} className="text-[10px] font-bold text-ink/50 tracking-widest uppercase bg-ink/[0.03] px-3 py-1.5 rounded-full border border-ink/[0.06]">
+                      <li key={item} className="text-[11px] md:text-xs font-medium text-ink/60 tracking-wider bg-ink/[0.03] px-4 py-2 rounded-full border border-ink/[0.06]">
                         {item}
                       </li>
                     ))}
                   </ul>
                 </ScrollStackItem>
 
-                <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-between transition-colors hover:border-ink/10">
+                <ScrollStackItem itemClassName="!h-[26rem] md:!h-[32rem] p-10 md:p-16 bg-white border border-ink/[0.08] flex flex-col justify-between max-w-4xl mx-auto shadow-[0_20px_60px_-20px_rgba(0,0,0,0.05)]">
                   <div>
-                    <span className="text-[12px] font-bold tracking-wider text-ink/30 block mb-3">03</span>
-                    <h3 className="text-2xl md:text-3xl font-bold text-ink tracking-tight mb-3">Competitor analysis</h3>
-                    <p className="text-sm md:text-base text-ink/50 font-light leading-relaxed max-w-lg">
+                    <span className="text-[12px] font-bold tracking-widest uppercase text-ink/30 block mb-4">03</span>
+                    <h3 className="text-3xl md:text-5xl font-nixie font-bold text-ink tracking-tighter mb-4">Competitor analysis</h3>
+                    <p className="text-base md:text-lg text-ink/60 font-light leading-relaxed max-w-xl">
                       We identify which competitors appear in AI answers, what content they have, and which off-page sources are elevating their visibility.
                     </p>
                   </div>
-                  <ul className="flex flex-wrap gap-2 mt-6">
+                  <ul className="flex flex-wrap gap-2 mt-auto">
                     {["Competitor mention tracking", "Source & citation mapping", "Content gap identification", "Positioning benchmark"].map(item => (
-                      <li key={item} className="text-[10px] font-bold text-ink/50 tracking-widest uppercase bg-ink/[0.03] px-3 py-1.5 rounded-full border border-ink/[0.06]">
+                      <li key={item} className="text-[11px] md:text-xs font-medium text-ink/60 tracking-wider bg-ink/[0.03] px-4 py-2 rounded-full border border-ink/[0.06]">
                         {item}
                       </li>
                     ))}
                   </ul>
                 </ScrollStackItem>
 
-                <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-between transition-colors hover:border-ink/10">
+                <ScrollStackItem itemClassName="!h-[26rem] md:!h-[32rem] p-10 md:p-16 bg-white border border-ink/[0.08] flex flex-col justify-between max-w-4xl mx-auto shadow-[0_20px_60px_-20px_rgba(0,0,0,0.05)]">
                   <div>
-                    <span className="text-[12px] font-bold tracking-wider text-ink/30 block mb-3">04</span>
-                    <h3 className="text-2xl md:text-3xl font-bold text-ink tracking-tight mb-3">Strategy building</h3>
-                    <p className="text-sm md:text-base text-ink/50 font-light leading-relaxed max-w-lg">
+                    <span className="text-[12px] font-bold tracking-widest uppercase text-ink/30 block mb-4">04</span>
+                    <h3 className="text-3xl md:text-5xl font-nixie font-bold text-ink tracking-tighter mb-4">Strategy building</h3>
+                    <p className="text-base md:text-lg text-ink/60 font-light leading-relaxed max-w-xl">
                       We synthesize everything into a complete, executable AI visibility roadmap — covering content, citations, positioning, and off-page priorities.
                     </p>
                   </div>
-                  <ul className="flex flex-wrap gap-2 mt-6">
+                  <ul className="flex flex-wrap gap-2 mt-auto">
                     {["Strategic roadmap", "Content priorities", "Citation targets", "Off-page action plan"].map(item => (
-                      <li key={item} className="text-[10px] font-bold text-ink/50 tracking-widest uppercase bg-ink/[0.03] px-3 py-1.5 rounded-full border border-ink/[0.06]">
+                      <li key={item} className="text-[11px] md:text-xs font-medium text-ink/60 tracking-wider bg-ink/[0.03] px-4 py-2 rounded-full border border-ink/[0.06]">
                         {item}
                       </li>
                     ))}
