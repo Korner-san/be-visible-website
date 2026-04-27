@@ -289,10 +289,10 @@ export const Home = () => {
             {/* 4 Feature Columns */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-24 border-t border-white/10 pt-16">
               {[
-                { title: "Track Your Presence", desc: "See how often your brand appears in AI answers." },
-                { title: "Analyze AI Responses", desc: "Understand what AI is saying about your brand and topics." },
-                { title: "Uncover Citations", desc: "Find out which websites drive AI's answers about you." },
-                { title: "Take Action", desc: "Improve your ranking and increase exposure." }
+                { title: "Monitor Share of Voice", desc: "See exactly how often your brand is recommended by AI." },
+                { title: "Track Custom Prompts", desc: "Identify the exact, high-value questions your customers ask." },
+                { title: "Analyze Source Citations", desc: "Find out which websites train AI models answering about you." },
+                { title: "Benchmark Competitors", desc: "See exactly where you lose visibility to industry leaders." }
               ].map((ft, i) => (
                 <div key={i} className="border-l border-white/10 pl-6 relative">
                   <div className="absolute -left-[1px] top-0 h-6 w-[2px] bg-[#00E599]" />
@@ -311,7 +311,7 @@ export const Home = () => {
                   <div className="w-7 h-7 rounded border border-white/20 bg-white/5 text-white flex items-center justify-center font-bold text-xs tracking-tighter shadow-sm">Bv</div>
                   <span className="font-bold tracking-widest text-[#00E599] text-[13px] uppercase">Be-Visible</span>
                 </div>
-                {['Platform', 'Resources', 'Solutions', 'Enterprise', 'Careers'].map(item => (
+                {['Dashboard', 'Prompts', 'Competitors', 'Models', 'Settings'].map(item => (
                   <div key={item} className="text-sm text-white/40 hover:text-white cursor-pointer py-1.5 font-medium transition-colors">{item}</div>
                 ))}
               </div>
@@ -322,10 +322,10 @@ export const Home = () => {
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00E599]/[0.03] rounded-full blur-[120px] pointer-events-none" />
                 
                 <div className="flex items-center gap-2 text-xs text-white/40 mb-8 font-mono relative z-10">
-                  <span>Client Profile</span> <span className="opacity-50">/</span> <span>Topic</span>
+                  <span>Client Profile</span> <span className="opacity-50">/</span> <span>Share of Voice</span>
                 </div>
                 
-                <h3 className="text-4xl font-bold mb-8 relative z-10 text-white/90">Topic</h3>
+                <h3 className="text-4xl font-bold mb-8 relative z-10 text-white/90">Category: Automation</h3>
                 
                 <div className="flex flex-wrap gap-4 mb-14 relative z-10">
                   <div className="px-5 py-2.5 bg-white/[0.03] border border-white/10 hover:border-white/20 transition-colors rounded-lg text-sm text-white/70 cursor-pointer">Last 24 hours</div>
@@ -334,7 +334,7 @@ export const Home = () => {
                   <div className="px-5 py-2.5 bg-white/[0.03] border border-white/10 hover:border-white/20 transition-colors rounded-lg text-sm text-white/70 cursor-pointer flex items-center gap-2 ml-4">Custom range <span className="opacity-50 text-[10px]">▼</span></div>
                 </div>
 
-                <div className="text-[13px] font-bold text-white/80 mb-6 relative z-10">Topic overview</div>
+                <div className="text-[13px] font-bold text-white/80 mb-6 relative z-10">Visibility overview</div>
 
                 {/* Data Grid */}
                 <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 flex-1 relative z-10">
@@ -342,12 +342,12 @@ export const Home = () => {
                   {/* Left: Line Chart Mockup */}
                   <div className="border border-white/5 rounded-2xl p-8 bg-white/[0.01] flex flex-col relative overflow-hidden group">
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
-                    <div className="text-[13px] text-white/90 mb-8 font-medium">Visibility Score by Persona</div>
+                    <div className="text-[13px] text-white/90 mb-8 font-medium">Share of Voice by Model</div>
                     
                     <div className="flex flex-wrap gap-x-6 gap-y-4 mb-12 text-xs">
-                      <div className="flex flex-col gap-1.5"><div className="flex items-center gap-2 text-white/50"><div className="w-2 h-2 rounded-[2px] bg-[#A855F7]"></div>Budgeter</div> <div className="text-lg font-mono font-bold">89.2% <span className="text-[#00E599] text-[11px] ml-1 tracking-widest leading-none align-middle">+5%</span></div></div>
-                      <div className="flex flex-col gap-1.5"><div className="flex items-center gap-2 text-white/50"><div className="w-2 h-2 rounded-[2px] bg-[#3B82F6]"></div>Trendsetter</div> <div className="text-lg font-mono font-bold">73.4% <span className="text-[#00E599] text-[11px] ml-1 tracking-widest leading-none align-middle">+3%</span></div></div>
-                      <div className="flex flex-col gap-1.5"><div className="flex items-center gap-2 text-white/50"><div className="w-2 h-2 rounded-[2px] bg-[#F59E0B]"></div>Explorer</div> <div className="text-lg font-mono font-bold">50.5% <span className="text-red-400 text-[11px] ml-1 tracking-widest leading-none align-middle">-7%</span></div></div>
+                      <div className="flex flex-col gap-1.5"><div className="flex items-center gap-2 text-white/50"><div className="w-2 h-2 rounded-[2px] bg-[#A855F7]"></div>ChatGPT</div> <div className="text-lg font-mono font-bold">89.2% <span className="text-[#00E599] text-[11px] ml-1 tracking-widest leading-none align-middle">+5%</span></div></div>
+                      <div className="flex flex-col gap-1.5"><div className="flex items-center gap-2 text-white/50"><div className="w-2 h-2 rounded-[2px] bg-[#3B82F6]"></div>Claude 3</div> <div className="text-lg font-mono font-bold">73.4% <span className="text-[#00E599] text-[11px] ml-1 tracking-widest leading-none align-middle">+3%</span></div></div>
+                      <div className="flex flex-col gap-1.5"><div className="flex items-center gap-2 text-white/50"><div className="w-2 h-2 rounded-[2px] bg-[#F59E0B]"></div>Google AI Overview</div> <div className="text-lg font-mono font-bold">50.5% <span className="text-red-400 text-[11px] ml-1 tracking-widest leading-none align-middle">-7%</span></div></div>
                     </div>
                     {/* SVG Line Chart */}
                     <div className="w-full flex-1 relative min-h-[180px] flex items-end">
@@ -385,13 +385,13 @@ export const Home = () => {
                   {/* Right: Bar/List Mockup */}
                   <div className="border border-white/5 rounded-2xl p-8 bg-white/[0.01] flex flex-col relative overflow-hidden group">
                      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
-                     <div className="text-[13px] text-white/90 mb-10 font-medium">Top Themes</div>
+                     <div className="text-[13px] text-white/90 mb-10 font-medium">High-Value Prompts</div>
                      <div className="space-y-8 flex-1">
                        {[
-                         { name: "Brand Reputation", val: 88, w: "90%" },
-                         { name: "Pricing Models", val: 64, w: "65%" },
-                         { name: "Feature Comparisons", val: 45, w: "45%" },
-                         { name: "Integration Capabilities", val: 32, w: "30%" },
+                         { name: '"best platforms for enterprise AI"', val: 88, w: "90%" },
+                         { name: '"top tools for brand visibility"', val: 64, w: "65%" },
+                         { name: '"how to track LLM mentions"', val: 45, w: "45%" },
+                         { name: '"competitor ranking software"', val: 32, w: "30%" },
                        ].map((theme, i) => (
                          <div key={i} className="flex flex-col gap-3">
                            <div className="flex justify-between text-[13px] text-white/70">
