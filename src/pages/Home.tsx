@@ -206,11 +206,11 @@ export const Home = () => {
               variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
             >
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-nixie leading-[1.1] tracking-tight mb-8">
-                AI is changing how customers<br />
-                <span className="text-white/40">discover brands.</span>
+                Understand how AI<br />
+                <span className="text-white/40">sees your brand.</span>
               </h2>
               <p className="text-xl md:text-2xl text-white/60 font-light max-w-2xl mx-auto leading-relaxed">
-                Understand where your brand appears, how it is described, and which competitors are being recommended.
+                See how ChatGPT, Claude, and Google AI Overview describe your brand, your market, and your competitors.
               </p>
             </motion.div>
           </div>
@@ -228,17 +228,17 @@ export const Home = () => {
               <ScrollStack useWindowScroll={true}>
                 <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-center transition-colors hover:border-ink/10">
                     <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Prompts</span>
-                    <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">Find the prompts that matter.</h3>
+                    <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">Reveal the questions shaping demand.</h3>
                     <p className="text-lg md:text-xl text-ink/60 font-light leading-relaxed max-w-lg">
-                      We identify the questions your customers are asking AI before they ever reach your website.
+                      Be-Visible identifies the prompts your customers ask before they choose a brand, product, or provider.
                     </p>
                 </ScrollStackItem>
 
                 <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-center transition-colors hover:border-ink/10">
                     <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Tracking</span>
-                    <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">Track your AI visibility.</h3>
+                    <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">Measure your position in AI answers.</h3>
                     <p className="text-lg md:text-xl text-ink/60 font-light leading-relaxed max-w-lg">
-                      Monitor how your brand appears across ChatGPT, Claude, and Google AI Overview.
+                      Track where your brand appears, how often it is mentioned, and which competitors show up instead.
                     </p>
                 </ScrollStackItem>
 
@@ -246,7 +246,7 @@ export const Home = () => {
                     <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Competitive Position</span>
                     <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">See who AI recommends.</h3>
                     <p className="text-lg md:text-xl text-ink/60 font-light leading-relaxed max-w-lg">
-                      Compare your brand against the competitors appearing inside AI-generated answers.
+                      Compare your brand against the companies appearing in the answers your customers trust.
                     </p>
                 </ScrollStackItem>
               </ScrollStack>
@@ -259,8 +259,8 @@ export const Home = () => {
           <FloatingHex scrollYProgress={scrollYProgress} index={4} offset={200} />
           <div className="section-container relative z-10 px-4">
             <div className="text-center mb-16 relative">
-              <span className="text-[10px] font-bold tracking-[0.4em] text-ink/30 uppercase mb-6 block drop-shadow-sm">Strategy</span>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-nixie text-ink tracking-tight drop-shadow-sm mb-6">Turn insight into strategy.</h2>
+              <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-6 drop-shadow-sm">Strategy</span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-nixie text-ink tracking-tight drop-shadow-sm mb-6">Turn visibility data into strategy.</h2>
               <p className="text-xl md:text-2xl text-ink/60 font-light max-w-2xl mx-auto leading-relaxed">
                 Use dashboards, audits, and expert guidance to improve your position inside AI-generated intelligence.
               </p>
