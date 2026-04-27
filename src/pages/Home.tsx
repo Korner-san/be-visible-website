@@ -205,15 +205,12 @@ export const Home = () => {
               viewport={{ once: true, margin: "-100px" }}
               variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
             >
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-nixie leading-[1.1] tracking-tight mb-12">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-nixie leading-[1.1] tracking-tight mb-8">
                 AI is changing how customers<br />
                 <span className="text-white/40">discover brands.</span>
               </h2>
-              <p className="text-lg md:text-xl text-white/70 font-light max-w-2xl mx-auto leading-relaxed mb-6">
-                Customers are increasingly turning to generative AI for answers, product recommendations, and vendor research. As platforms like ChatGPT, Claude, and Google AI Overview become primary interfaces for information, brands require a structured approach to understand and measure their presence within these systems.
-              </p>
-              <p className="text-lg md:text-xl text-white/70 font-light max-w-2xl mx-auto leading-relaxed">
-                BeVisible provides the intelligence infrastructure to map this new landscape. We give your team a clear, evidence-based view of how AI models perceive your category and your brand.
+              <p className="text-xl md:text-2xl text-white/60 font-light max-w-2xl mx-auto leading-relaxed">
+                Understand where your brand appears, how it is described, and which competitors are being recommended.
               </p>
             </motion.div>
           </div>
@@ -227,40 +224,29 @@ export const Home = () => {
           </div>
 
           <div className="section-container pt-28 md:pt-40">
-            <motion.div 
-               initial="hidden"
-               whileInView="visible"
-               viewport={{ once: true, margin: "-100px" }}
-               variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
-               className="text-center mb-8"
-            >
-               <span className="text-[10px] font-bold tracking-[0.55em] uppercase text-ink/30 block mb-6 drop-shadow-sm">The Mechanism</span>
-               <h2 className="text-4xl md:text-5xl lg:text-6xl font-nixie text-ink tracking-tight px-4 drop-shadow-sm">Intelligence and execution,<br/>integrated.</h2>
-            </motion.div>
-
             <div className="max-w-3xl mx-auto w-full relative group">
               <ScrollStack useWindowScroll={true}>
                 <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-center transition-colors hover:border-ink/10">
-                    <span className="text-[12px] font-bold tracking-wider text-ink/30 block mb-3">STEP 01</span>
-                    <h3 className="text-2xl md:text-3xl font-bold text-ink tracking-tight mb-3">Uncover the Prompts</h3>
-                    <p className="text-sm md:text-base text-ink/50 font-light leading-relaxed max-w-lg">
-                      We analyze your online presence and market category to identify the precise, commercially meaningful questions your customers are asking AI models.
+                    <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Prompts</span>
+                    <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">Find the prompts that matter.</h3>
+                    <p className="text-lg md:text-xl text-ink/60 font-light leading-relaxed max-w-lg">
+                      We identify the questions your customers are asking AI before they ever reach your website.
                     </p>
                 </ScrollStackItem>
 
                 <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-center transition-colors hover:border-ink/10">
-                    <span className="text-[12px] font-bold tracking-wider text-ink/30 block mb-3">STEP 02</span>
-                    <h3 className="text-2xl md:text-3xl font-bold text-ink tracking-tight mb-3">Track AI Responses</h3>
-                    <p className="text-sm md:text-base text-ink/50 font-light leading-relaxed max-w-lg">
-                      Our platform systematically tracks those prompts across ChatGPT, Claude, and Google AI Overview. We measure how your brand is represented, identify exactly which competitors are being recommended, and pinpoint the sources influencing those answers.
+                    <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Tracking</span>
+                    <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">Track your AI visibility.</h3>
+                    <p className="text-lg md:text-xl text-ink/60 font-light leading-relaxed max-w-lg">
+                      Monitor how your brand appears across ChatGPT, Claude, and Google AI Overview.
                     </p>
                 </ScrollStackItem>
 
                 <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-center transition-colors hover:border-ink/10">
-                    <span className="text-[12px] font-bold tracking-wider text-ink/30 block mb-3">STEP 03</span>
-                    <h3 className="text-2xl md:text-3xl font-bold text-ink tracking-tight mb-3">Strategic Optimization</h3>
-                    <p className="text-sm md:text-base text-ink/50 font-light leading-relaxed max-w-lg">
-                      We translate raw data into an actionable roadmap. Through the platform and our strategic analysts, we deliver the exact content formats and signals needed to optimize your position inside AI-generated intelligence.
+                    <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Competitive Position</span>
+                    <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">See who AI recommends.</h3>
+                    <p className="text-lg md:text-xl text-ink/60 font-light leading-relaxed max-w-lg">
+                      Compare your brand against the competitors appearing inside AI-generated answers.
                     </p>
                 </ScrollStackItem>
               </ScrollStack>
@@ -268,51 +254,27 @@ export const Home = () => {
           </div>
         </section>
 
-        {/* ── SECTION 4: PLATFORM CAPABILITIES ──────────────────────────────── */}
+        {/* ── SECTION 4: STRATEGY ───────────────────────────────────────────── */}
         <ScrollSection className="py-32 md:py-48 bg-surface-50 border-t border-ink/[0.04]" speed={0.8}>
           <FloatingHex scrollYProgress={scrollYProgress} index={4} offset={200} />
           <div className="section-container relative z-10 px-4">
-            <div className="text-center mb-20 relative">
-              <span className="text-[10px] font-bold tracking-[0.4em] text-ink/30 uppercase mb-6 block drop-shadow-sm">Capabilities</span>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-nixie text-ink tracking-tight drop-shadow-sm">A comprehensive view of your<br/>AI market position.</h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-              <div className="p-10 surface-plate hover:-translate-y-1 transition-all duration-500 flex flex-col">
-                <div className="flex-1">
-                  <h3 className="text-lg font-bold text-ink mb-3 group-hover:text-ink/80 transition-colors">Multi-Model Tracking</h3>
-                  <p className="text-ink/60 font-light leading-relaxed">Continuous monitoring across ChatGPT, Claude, and Google AI Overview.</p>
-                </div>
-              </div>
-              <div className="p-10 surface-plate hover:-translate-y-1 transition-all duration-500 flex flex-col">
-                <div className="flex-1">
-                  <h3 className="text-lg font-bold text-ink mb-3 group-hover:text-ink/80 transition-colors">Competitor Benchmarking</h3>
-                  <p className="text-ink/60 font-light leading-relaxed">Clear visibility into which brands AI recommends in your category, and why.</p>
-                </div>
-              </div>
-              <div className="p-10 surface-plate hover:-translate-y-1 transition-all duration-500 flex flex-col">
-                <div className="flex-1">
-                  <h3 className="text-lg font-bold text-ink mb-3 group-hover:text-ink/80 transition-colors">Content Signal Mapping</h3>
-                  <p className="text-ink/60 font-light leading-relaxed">Identification of the specific content formats and authority signals influencing AI answers.</p>
-                </div>
-              </div>
-              <div className="p-10 surface-plate hover:-translate-y-1 transition-all duration-500 flex flex-col">
-                <div className="flex-1">
-                  <h3 className="text-lg font-bold text-ink mb-3 group-hover:text-ink/80 transition-colors">Executive Delivery</h3>
-                  <p className="text-ink/60 font-light leading-relaxed">Actionable dashboards, Excel exports, and API access for teams that need deeper integration.</p>
-                </div>
-              </div>
+            <div className="text-center mb-16 relative">
+              <span className="text-[10px] font-bold tracking-[0.4em] text-ink/30 uppercase mb-6 block drop-shadow-sm">Strategy</span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-nixie text-ink tracking-tight drop-shadow-sm mb-6">Turn insight into strategy.</h2>
+              <p className="text-xl md:text-2xl text-ink/60 font-light max-w-2xl mx-auto leading-relaxed">
+                Use dashboards, audits, and expert guidance to improve your position inside AI-generated intelligence.
+              </p>
             </div>
             
-            <div className="mt-20 max-w-5xl mx-auto surface-plate rounded-[2.5rem] h-64 md:h-[28rem] flex flex-col items-center justify-center p-8 text-center bg-white/20">
+            <div className="mt-16 max-w-5xl mx-auto surface-plate rounded-[2.5rem] h-64 md:h-[28rem] flex flex-col items-center justify-center p-8 text-center bg-white/20">
                <Hexagon size={48} outline className="text-ink/20 mb-6 mx-auto" />
                <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-ink/30 font-bold">[ Premium Dashboard Visual Placeholder ]</span>
             </div>
           </div>
         </ScrollSection>
 
-        {/* ── SECTION 5 & 6: STRATEGIC PARTNERSHIP & FINAL CTA ──────────────── */}
-        <ScrollSection className="py-32 md:py-56 bg-surface-50 relative overflow-hidden" speed={0.5}>
+        {/* ── SECTION 5: FINAL CTA ──────────────────────────────────────────── */}
+        <ScrollSection className="py-32 md:py-48 bg-surface-50 relative overflow-hidden" speed={0.5}>
           <div className="section-container relative z-10 w-full px-4 md:px-12">
             <motion.div
               initial="hidden"
@@ -325,18 +287,11 @@ export const Home = () => {
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.08)_0%,transparent_60%)] pointer-events-none" />
               
               <div className="relative z-10 max-w-4xl mx-auto">
-                <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-white/50 mb-8 block drop-shadow-sm">Platform intelligence guided by expertise.</span>
-                <p className="text-lg md:text-xl text-white/70 font-light mb-24 max-w-3xl mx-auto leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
-                  Data is only valuable when tied to execution. Depending on your plan, BeVisible pairs our proprietary tracking platform with dedicated account managers, precise strategic audits, and ongoing alignment meetings. We provide the operational roadmap so your marketing team can move with clarity and confidence.
-                </p>
-
-                <div className="w-px h-16 bg-gradient-to-b from-white/20 to-transparent mx-auto mb-20 drop-shadow-sm" />
-
-                <h2 className="text-5xl md:text-7xl lg:text-[7rem] font-nixie text-white leading-[0.9] mb-8 tracking-tighter drop-shadow-xl">
+                <h2 className="text-5xl md:text-7xl lg:text-[7rem] font-nixie text-white leading-[0.9] mb-10 tracking-tighter drop-shadow-xl">
                   Secure your place<br/>
                   <span className="text-white/40">in the future of search.</span>
                 </h2>
-                <p className="text-lg md:text-xl text-white/60 font-light mb-16 leading-relaxed max-w-2xl mx-auto drop-shadow-md">
+                <p className="text-xl md:text-2xl text-white/60 font-light mb-16 leading-relaxed max-w-2xl mx-auto drop-shadow-md">
                   Understand how AI systems see your brand — and build the strategy to appear where your customers are searching next.
                 </p>
                 <div className="flex justify-center">
