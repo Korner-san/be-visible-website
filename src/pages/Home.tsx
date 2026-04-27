@@ -178,8 +178,8 @@ export const Home = () => {
                 </span>
               </p>
               
-              <p className="text-sm mb-12 font-light opacity-60 max-w-xl mx-auto leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
-                We track and analyze how AI systems talk about your brand, industry, and competitors — then build the strategy to help your company appear in AI-generated answers.
+              <p className="text-sm mb-12 font-light opacity-80 max-w-xl mx-auto leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
+                Be-Visible is the intelligence platform for the zero-click era. We track how AI systems talk about your brand, analyze your competitive position, and execute the strategy to dominate AI-generated answers.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button 
@@ -206,11 +206,11 @@ export const Home = () => {
               variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
             >
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-nixie leading-[1.1] tracking-tight mb-8">
-                Understand how AI<br />
-                <span className="text-white/40">sees your brand.</span>
+                Enterprise-grade<br />
+                <span className="text-white/40">AI visibility.</span>
               </h2>
               <p className="text-xl md:text-2xl text-white/60 font-light max-w-2xl mx-auto leading-relaxed">
-                See how ChatGPT, Claude, and Google AI Overview describe your brand, your market, and your competitors.
+                See exactly how ChatGPT, Claude, and Google AI Overview rank your brand. Be-Visible reveals your share of voice, extracts AI sentiment, and shows you exactly what it takes to own the AI recommendations in your industry.
               </p>
             </motion.div>
           </div>
@@ -227,26 +227,26 @@ export const Home = () => {
             <div className="max-w-3xl mx-auto w-full relative group">
               <ScrollStack useWindowScroll={true}>
                 <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-center transition-colors hover:border-ink/10">
-                    <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Prompts</span>
-                    <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">Reveal the questions shaping demand.</h3>
+                    <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Prompt Intelligence</span>
+                    <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">Uncover high-value prompts.</h3>
                     <p className="text-lg md:text-xl text-ink/60 font-light leading-relaxed max-w-lg">
-                      Be-Visible identifies the prompts your customers ask before they choose a brand, product, or provider.
+                      Be-Visible’s data engine identifies the precise, commercially meaningful questions your customers are asking AI models before they make a buying decision.
                     </p>
                 </ScrollStackItem>
 
                 <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-center transition-colors hover:border-ink/10">
-                    <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Tracking</span>
-                    <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">Measure your position in AI answers.</h3>
+                    <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Visibility Tracking</span>
+                    <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">Measure your AI market share.</h3>
                     <p className="text-lg md:text-xl text-ink/60 font-light leading-relaxed max-w-lg">
-                      Track where your brand appears, how often it is mentioned, and which competitors show up instead.
+                      Track your brand's presence across all major AI models. Be-Visible runs daily checks to show you how often you are mentioned, what attributes are highlighted, and where you are losing ground to competitors.
                     </p>
                 </ScrollStackItem>
 
                 <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-center transition-colors hover:border-ink/10">
-                    <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Competitive Position</span>
-                    <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">See who AI recommends.</h3>
+                    <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Competitor Benchmarking</span>
+                    <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">See who AI actually recommends.</h3>
                     <p className="text-lg md:text-xl text-ink/60 font-light leading-relaxed max-w-lg">
-                      Compare your brand against the companies appearing in the answers your customers trust.
+                      Compare your brand against industry leaders. Be-Visible provides clear visibility into which competitors are being cited instead of you, and uncovers the source materials driving those recommendations.
                     </p>
                 </ScrollStackItem>
               </ScrollStack>
@@ -260,9 +260,9 @@ export const Home = () => {
           <div className="section-container relative z-10 px-4">
             <div className="text-center mb-16 relative">
               <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-6 drop-shadow-sm">Strategy</span>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-nixie text-ink tracking-tight drop-shadow-sm mb-6">Turn visibility data into strategy.</h2>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-nixie text-ink tracking-tight drop-shadow-sm mb-6">The platform to execute your AI strategy.</h2>
               <p className="text-xl md:text-2xl text-ink/60 font-light max-w-2xl mx-auto leading-relaxed">
-                Use dashboards, audits, and expert guidance to improve your position inside AI-generated intelligence.
+                Be-Visible goes beyond tracking. We pair our proprietary intelligence platform with expert analysis to deliver the exact content signals required to improve your ranking in AI search.
               </p>
             </div>
             
@@ -292,7 +292,7 @@ export const Home = () => {
                   <span className="text-white/40">in the future of search.</span>
                 </h2>
                 <p className="text-xl md:text-2xl text-white/60 font-light mb-16 leading-relaxed max-w-2xl mx-auto drop-shadow-md">
-                  Understand how AI systems see your brand — and build the strategy to appear where your customers are searching next.
+                  Over 100 million people use AI to discover new products. Be-Visible ensures your brand is the one they find.
                 </p>
                 <div className="flex justify-center">
                   <button 
