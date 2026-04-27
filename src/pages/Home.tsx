@@ -194,59 +194,77 @@ export const Home = () => {
         </section>
 
         {/* ── SECTION 2: CONTEXT ────────────────────────────────────────────── */}
-        <section className="relative bg-ink text-white overflow-hidden py-32 md:py-48">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:28px_28px] pointer-events-none opacity-40" />
-          <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-black/60 to-transparent pointer-events-none" />
+        <section className="relative bg-ink text-white overflow-hidden py-40 md:py-56 min-h-[80vh] flex flex-col justify-center">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:28px_28px] pointer-events-none opacity-60" />
+          <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none" />
+          <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
 
-          <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
+          <div className="max-w-5xl mx-auto px-4 text-center relative z-10 w-full mt-24">
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
-              variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
+              variants={{
+                hidden: {},
+                visible: {
+                  transition: { staggerChildren: 0.2 }
+                }
+              }}
             >
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-nixie leading-[1.1] tracking-tight mb-8">
+              <motion.h2 
+                variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
+                className="text-5xl md:text-7xl lg:text-[6.5rem] font-nixie leading-[1.05] tracking-tight mb-12"
+              >
                 Enterprise-grade<br />
                 <span className="text-white/40">AI visibility.</span>
-              </h2>
-              <p className="text-xl md:text-2xl text-white/60 font-light max-w-2xl mx-auto leading-relaxed">
+              </motion.h2>
+              <motion.p 
+                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
+                className="text-xl md:text-3xl text-white/60 font-light max-w-3xl mx-auto leading-relaxed"
+              >
                 See exactly how ChatGPT, Claude, and Google AI Overview rank your brand. Be-Visible reveals your share of voice, extracts AI sentiment, and shows you exactly what it takes to own the AI recommendations in your industry.
-              </p>
+              </motion.p>
             </motion.div>
           </div>
         </section>
 
-        {/* ── SECTION 3: HOW IT WORKS ───────────────────────────────────────── */}
+        {/* ── SECTION 3: ROADMAP ───────────────────────────────────────── */}
         <section className="relative bg-surface-50 overflow-hidden">
           <div className="absolute inset-0 bg-dot-pattern opacity-[0.6] mix-blend-multiply pointer-events-none" />
           <div className="absolute inset-0 -z-20 opacity-[0.04]">
             <Grainient color1="#000000" color2="#ffffff" color3="#808080" timeSpeed={0.05} warpStrength={0.22} zoom={2.2} />
           </div>
 
-          <div className="section-container pt-28 md:pt-40">
+          <div className="section-container pt-32 md:pt-48">
+            <div className="text-center mb-16 md:mb-24 px-4">
+              <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-6">Process</span>
+              <h2 className="text-5xl md:text-7xl font-nixie text-ink tracking-tight">How we build our strategies.</h2>
+              <div className="w-px h-24 bg-ink/10 mx-auto mt-12 mb-4"></div>
+            </div>
+            
             <div className="max-w-3xl mx-auto w-full relative group">
               <ScrollStack useWindowScroll={true}>
                 <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-center transition-colors hover:border-ink/10">
-                    <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Prompt Intelligence</span>
-                    <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">Uncover high-value prompts.</h3>
+                    <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Phase 1</span>
+                    <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">Analyzing data</h3>
                     <p className="text-lg md:text-xl text-ink/60 font-light leading-relaxed max-w-lg">
-                      Be-Visible’s data engine identifies the precise, commercially meaningful questions your customers are asking AI models before they make a buying decision.
+                      We deeply learn about your brand and positioning, then rigorously map your entire competitive landscape to find your structural gaps.
                     </p>
                 </ScrollStackItem>
 
                 <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-center transition-colors hover:border-ink/10">
-                    <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Visibility Tracking</span>
-                    <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">Measure your AI market share.</h3>
+                    <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Phase 2</span>
+                    <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">Create prompts</h3>
                     <p className="text-lg md:text-xl text-ink/60 font-light leading-relaxed max-w-lg">
-                      Track your brand's presence across all major AI models. Be-Visible runs daily checks to show you how often you are mentioned, what attributes are highlighted, and where you are losing ground to competitors.
+                      We systematically execute and define the highest-value test prompts your customers are using across all major AI models right now.
                     </p>
                 </ScrollStackItem>
 
                 <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-center transition-colors hover:border-ink/10">
-                    <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Competitor Benchmarking</span>
-                    <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">See who AI actually recommends.</h3>
+                    <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Phase 3</span>
+                    <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">Creating a full visibility dashboard</h3>
                     <p className="text-lg md:text-xl text-ink/60 font-light leading-relaxed max-w-lg">
-                      Compare your brand against industry leaders. Be-Visible provides clear visibility into which competitors are being cited instead of you, and uncovers the source materials driving those recommendations.
+                      We finalize your ranking framework into a living dashboard that tracks your AI presence, uncovers gaps, and guides your ongoing content strategy.
                     </p>
                 </ScrollStackItem>
               </ScrollStack>
@@ -254,22 +272,144 @@ export const Home = () => {
           </div>
         </section>
 
-        {/* ── SECTION 4: STRATEGY ───────────────────────────────────────────── */}
-        <ScrollSection className="py-32 md:py-48 bg-surface-50 border-t border-ink/[0.04]" speed={0.8}>
-          <FloatingHex scrollYProgress={scrollYProgress} index={4} offset={200} />
-          <div className="section-container relative z-10 px-4">
-            <div className="text-center mb-16 relative">
-              <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-6 drop-shadow-sm">Strategy</span>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-nixie text-ink tracking-tight drop-shadow-sm mb-6">The platform to execute your AI strategy.</h2>
-              <p className="text-xl md:text-2xl text-ink/60 font-light max-w-2xl mx-auto leading-relaxed">
-                Be-Visible goes beyond tracking. We pair our proprietary intelligence platform with expert analysis to deliver the exact content signals required to improve your ranking in AI search.
+        {/* ── SECTION 4: PRODUCT SHOWCASE ───────────────────────────────────────────── */}
+        <ScrollSection className="py-32 md:py-48 bg-ink text-white relative overflow-hidden" speed={0.8}>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none opacity-50" />
+          <div className="section-container relative z-10 px-4 md:px-8 max-w-7xl mx-auto">
+            
+            <div className="mb-24 max-w-3xl">
+              <h2 className="text-5xl md:text-6xl font-nixie tracking-tight mb-8">
+                Understand how AI is<br/>talking about your brand.
+              </h2>
+              <p className="text-xl text-white/50 font-light max-w-2xl leading-relaxed">
+                Track your AI visibility, see where and how AI mentions your brand, and uncover insights to enhance your presence.
               </p>
             </div>
-            
-            <div className="mt-16 max-w-5xl mx-auto surface-plate rounded-[2.5rem] h-64 md:h-[28rem] flex flex-col items-center justify-center p-8 text-center bg-white/20">
-               <Hexagon size={48} outline className="text-ink/20 mb-6 mx-auto" />
-               <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-ink/30 font-bold">[ Premium Dashboard Visual Placeholder ]</span>
+
+            {/* 4 Feature Columns */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-24 border-t border-white/10 pt-16">
+              {[
+                { title: "Track Your Presence", desc: "See how often your brand appears in AI answers." },
+                { title: "Analyze AI Responses", desc: "Understand what AI is saying about your brand and topics." },
+                { title: "Uncover Citations", desc: "Find out which websites drive AI's answers about you." },
+                { title: "Take Action", desc: "Improve your ranking and increase exposure." }
+              ].map((ft, i) => (
+                <div key={i} className="border-l border-white/10 pl-6 relative">
+                  <div className="absolute -left-[1px] top-0 h-6 w-[2px] bg-[#00E599]" />
+                  <h4 className="text-lg font-bold mb-3">{ft.title}</h4>
+                  <p className="text-sm text-white/50 leading-relaxed font-light">{ft.desc}</p>
+                </div>
+              ))}
             </div>
+
+            {/* Premium Dashboard UI Mockup */}
+            <div className="w-full bg-[#080808] border border-white/10 rounded-3xl overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,1)] flex flex-col md:flex-row h-auto md:h-[600px]">
+              
+              {/* Sidebar */}
+              <div className="w-full md:w-64 border-r border-white/5 p-6 flex flex-col gap-4 bg-[#0A0A0A]">
+                <div className="flex items-center gap-3 mb-10 mt-2">
+                  <div className="w-7 h-7 rounded border border-white/20 bg-white/5 text-white flex items-center justify-center font-bold text-xs tracking-tighter shadow-sm">Bv</div>
+                  <span className="font-bold tracking-widest text-[#00E599] text-[13px] uppercase">Be-Visible</span>
+                </div>
+                {['Platform', 'Resources', 'Solutions', 'Enterprise', 'Careers'].map(item => (
+                  <div key={item} className="text-sm text-white/40 hover:text-white cursor-pointer py-1.5 font-medium transition-colors">{item}</div>
+                ))}
+              </div>
+
+              {/* Main Content Area */}
+              <div className="flex-1 p-6 md:p-12 flex flex-col relative overflow-hidden bg-gradient-to-br from-[#0c0c0c] to-black">
+                {/* Subtle gradient glow inside dashboard */}
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00E599]/[0.03] rounded-full blur-[120px] pointer-events-none" />
+                
+                <div className="flex items-center gap-2 text-xs text-white/40 mb-8 font-mono relative z-10">
+                  <span>Client Profile</span> <span className="opacity-50">/</span> <span>Topic</span>
+                </div>
+                
+                <h3 className="text-4xl font-bold mb-8 relative z-10 text-white/90">Topic</h3>
+                
+                <div className="flex flex-wrap gap-4 mb-14 relative z-10">
+                  <div className="px-5 py-2.5 bg-white/[0.03] border border-white/10 hover:border-white/20 transition-colors rounded-lg text-sm text-white/70 cursor-pointer">Last 24 hours</div>
+                  <div className="px-5 py-2.5 bg-white/[0.08] border border-white/10 transition-colors rounded-lg text-sm text-white font-medium shadow-sm">Last 7 days</div>
+                  <div className="px-5 py-2.5 bg-white/[0.03] border border-white/10 hover:border-white/20 transition-colors rounded-lg text-sm text-white/70 cursor-pointer">Last 30 days</div>
+                  <div className="px-5 py-2.5 bg-white/[0.03] border border-white/10 hover:border-white/20 transition-colors rounded-lg text-sm text-white/70 cursor-pointer flex items-center gap-2 ml-4">Custom range <span className="opacity-50 text-[10px]">▼</span></div>
+                </div>
+
+                <div className="text-[13px] font-bold text-white/80 mb-6 relative z-10">Topic overview</div>
+
+                {/* Data Grid */}
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 flex-1 relative z-10">
+                  
+                  {/* Left: Line Chart Mockup */}
+                  <div className="border border-white/5 rounded-2xl p-8 bg-white/[0.01] flex flex-col relative overflow-hidden group">
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+                    <div className="text-[13px] text-white/90 mb-8 font-medium">Visibility Score by Persona</div>
+                    
+                    <div className="flex flex-wrap gap-x-6 gap-y-4 mb-12 text-xs">
+                      <div className="flex flex-col gap-1.5"><div className="flex items-center gap-2 text-white/50"><div className="w-2 h-2 rounded-[2px] bg-[#A855F7]"></div>Budgeter</div> <div className="text-lg font-mono font-bold">89.2% <span className="text-[#00E599] text-[11px] ml-1 tracking-widest leading-none align-middle">+5%</span></div></div>
+                      <div className="flex flex-col gap-1.5"><div className="flex items-center gap-2 text-white/50"><div className="w-2 h-2 rounded-[2px] bg-[#3B82F6]"></div>Trendsetter</div> <div className="text-lg font-mono font-bold">73.4% <span className="text-[#00E599] text-[11px] ml-1 tracking-widest leading-none align-middle">+3%</span></div></div>
+                      <div className="flex flex-col gap-1.5"><div className="flex items-center gap-2 text-white/50"><div className="w-2 h-2 rounded-[2px] bg-[#F59E0B]"></div>Explorer</div> <div className="text-lg font-mono font-bold">50.5% <span className="text-red-400 text-[11px] ml-1 tracking-widest leading-none align-middle">-7%</span></div></div>
+                    </div>
+                    {/* SVG Line Chart */}
+                    <div className="w-full flex-1 relative min-h-[180px] flex items-end">
+                      {/* Grid lines */}
+                      <div className="absolute inset-0 flex flex-col justify-between pointer-events-none">
+                        {[1, 2, 3, 4].map((line, i) => (
+                           <div key={i} className="w-full flex items-center gap-4">
+                             <div className="text-[9px] text-white/20 font-mono w-6">{100 - (i * 25)}%</div>
+                             <div className="h-px bg-white/[0.04] flex-1"></div>
+                           </div>
+                        ))}
+                      </div>
+                      <div className="pl-10 w-full h-full relative">
+                        <svg className="w-full h-[calc(100%-8px)] overflow-visible absolute bottom-2" preserveAspectRatio="none" viewBox="0 0 100 100">
+                          <path d="M0,80 L10,70 L20,70 L30,40 L40,60 L50,80 L60,85 L70,30 L80,30 L90,65 L100,50" fill="none" stroke="#A855F7" strokeWidth="2" vectorEffect="non-scaling-stroke" strokeLinejoin="round" />
+                          <path d="M0,45 L15,60 L25,50 L40,75 L60,55 L75,80 L85,80 L100,20" fill="none" stroke="#3B82F6" strokeWidth="2" vectorEffect="non-scaling-stroke" strokeLinejoin="round" />
+                          <path d="M0,60 L20,30 L30,40 L50,20 L60,45 L80,20 L90,60 L100,60" fill="none" stroke="#F59E0B" strokeWidth="2" vectorEffect="non-scaling-stroke" strokeLinejoin="round" />
+                          
+                          {/* Data points */}
+                          <circle cx="100" cy="50" r="3" fill="#A855F7" />
+                          <circle cx="100" cy="20" r="3" fill="#3B82F6" />
+                          <circle cx="100" cy="60" r="3" fill="#F59E0B" />
+                        </svg>
+                      </div>
+                      <div className="absolute -bottom-6 left-10 right-0 flex justify-between text-[9px] text-white/30 font-mono uppercase tracking-widest">
+                        <span>Apr 12</span>
+                        <span>Apr 14</span>
+                        <span>Apr 16</span>
+                        <span>Apr 18</span>
+                        <span>Apr 20</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right: Bar/List Mockup */}
+                  <div className="border border-white/5 rounded-2xl p-8 bg-white/[0.01] flex flex-col relative overflow-hidden group">
+                     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+                     <div className="text-[13px] text-white/90 mb-10 font-medium">Top Themes</div>
+                     <div className="space-y-8 flex-1">
+                       {[
+                         { name: "Brand Reputation", val: 88, w: "90%" },
+                         { name: "Pricing Models", val: 64, w: "65%" },
+                         { name: "Feature Comparisons", val: 45, w: "45%" },
+                         { name: "Integration Capabilities", val: 32, w: "30%" },
+                       ].map((theme, i) => (
+                         <div key={i} className="flex flex-col gap-3">
+                           <div className="flex justify-between text-[13px] text-white/70">
+                             <span className="flex items-center gap-4"><span className="text-white/30 text-[10px]">{i+1}</span> {theme.name}</span>
+                             <span className="font-mono">{theme.val}</span>
+                           </div>
+                           <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                             <div className="h-full bg-[#00E599] rounded-full shadow-[0_0_10px_rgba(0,229,153,0.5)]" style={{ width: theme.w }}></div>
+                           </div>
+                         </div>
+                       ))}
+                     </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            
           </div>
         </ScrollSection>
 
