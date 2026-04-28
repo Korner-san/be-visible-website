@@ -96,6 +96,25 @@ const platformContainerVariants = {
   visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 1.4, ease: [0.16, 1, 0.3, 1] } }
 };
 
+const Word = ({ children, progress, range }: { children: React.ReactNode, progress: any, range: [number, number] }) => {
+  const opacity = useTransform(progress, range, [0.15, 1]);
+  const y = useTransform(progress, range, [10, 0]);
+  return <motion.span style={{ opacity, y }} className="inline-block">{children}</motion.span>;
+};
+
+const ScrollRevealText = ({ text, progress }: { text: string; progress: any }) => {
+  const words = text.split(" ");
+  return (
+    <span className="flex flex-wrap gap-x-[0.25em] gap-y-[0.1em]">
+      {words.map((word, i) => {
+        const start = (i / words.length) * 0.8; // Finish revealing before the very end of scroll
+        const end = start + (1 / words.length);
+        return <Word key={i} progress={progress} range={[start, end]}>{word}</Word>;
+      })}
+    </span>
+  );
+};
+
 export const Home = () => {
   const navigate = useNavigate();
   const { openBooking } = useBooking();
@@ -111,10 +130,16 @@ export const Home = () => {
   const section2Ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress: s2Progress } = useScroll({
     target: section2Ref,
-    offset: ["start end", "end end"]
+    offset: ["start end", "start start"]
   });
   const s2Y = useTransform(s2Progress, [0, 1], ["-50%", "0%"]);
   const s2Opacity = useTransform(s2Progress, [0, 1], [1, 0]);
+
+  const section2ScrollRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: textRevealProgress } = useScroll({
+    target: section2ScrollRef,
+    offset: ["start start", "end end"]
+  });
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -202,43 +227,33 @@ export const Home = () => {
         </section>
 
         {/* ── SECTION 2: CONTEXT ────────────────────────────────────────────── */}
-        <div ref={section2Ref} className="relative z-10 w-full overflow-hidden bg-ink">
+        <div ref={section2Ref} className="relative z-10 w-full bg-ink">
           <motion.div style={{ y: s2Y }} className="relative w-full">
             <motion.div style={{ opacity: s2Opacity }} className="absolute inset-0 z-50 bg-black pointer-events-none" />
             
-            <section className="relative text-white py-40 md:py-56 min-h-[80vh] flex flex-col justify-center">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:28px_28px] pointer-events-none opacity-60" />
-              <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none" />
-              <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
+            {/* Scroll Track for Sticky Reveal */}
+            <div ref={section2ScrollRef} className="relative w-full h-[300vh]">
+              <section className="sticky top-0 h-screen w-full text-white overflow-hidden flex flex-col justify-center">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:28px_28px] pointer-events-none opacity-60" />
+                <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none" />
+                <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
 
-              <div className="max-w-5xl mx-auto px-4 text-center relative z-10 w-full mt-24">
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: "-100px" }}
-                  variants={{
-                    hidden: {},
-                    visible: {
-                      transition: { staggerChildren: 0.2 }
-                    }
-                  }}
-                >
+                <div className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10">
                   <motion.h2 
-                    variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
-                    className="text-5xl md:text-7xl lg:text-[6.5rem] font-nixie leading-[1.05] tracking-tight mb-12"
+                    className="text-5xl md:text-7xl lg:text-[6.5rem] font-nixie leading-[1.05] tracking-tight mb-16 max-w-4xl"
                   >
                     Enterprise-grade<br />
                     <span className="text-white/40">AI visibility.</span>
                   </motion.h2>
-                  <motion.p 
-                    variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
-                    className="text-xl md:text-3xl text-white/60 font-light max-w-3xl mx-auto leading-relaxed"
-                  >
-                    See exactly how ChatGPT, Claude, and Google AI Overview rank your brand. Be-Visible reveals your share of voice, extracts AI sentiment, and shows you exactly what it takes to own the AI recommendations in your industry.
-                  </motion.p>
-                </motion.div>
-              </div>
-            </section>
+                  <p className="text-2xl md:text-4xl lg:text-5xl text-white font-light leading-snug tracking-tight max-w-6xl">
+                    <ScrollRevealText 
+                      progress={textRevealProgress} 
+                      text="See exactly how ChatGPT, Claude, and Google AI Overview rank your brand. Be-Visible reveals your share of voice, extracts AI sentiment, and shows you exactly what it takes to own the AI recommendations in your industry."
+                    />
+                  </p>
+                </div>
+              </section>
+            </div>
             
           </motion.div>
         </div>
