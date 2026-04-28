@@ -108,6 +108,14 @@ export const Home = () => {
     offset: ["start start", "end end"]
   });
 
+  const section2Ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: s2Progress } = useScroll({
+    target: section2Ref,
+    offset: ["start end", "end end"]
+  });
+  const s2Y = useTransform(s2Progress, [0, 1], ["-50%", "0%"]);
+  const s2Opacity = useTransform(s2Progress, [0, 1], [1, 0]);
+
   useEffect(() => {
     const timer = setInterval(() => {
       setModelIndex((prev) => (prev + 1) % models.length);
@@ -126,7 +134,7 @@ export const Home = () => {
     >
       <main>
         {/* ── HERO (LOCKED) ─────────────────────────────────────────────────── */}
-        <section className="relative h-screen bg-black text-white text-center overflow-hidden flex items-center justify-center pt-20">
+        <section className="relative z-20 h-screen bg-black text-white text-center overflow-hidden flex items-center justify-center pt-20">
           <div className="absolute inset-0">
             <Grainient
               color1="#ffffff"
@@ -194,39 +202,46 @@ export const Home = () => {
         </section>
 
         {/* ── SECTION 2: CONTEXT ────────────────────────────────────────────── */}
-        <section className="relative bg-ink text-white overflow-hidden py-40 md:py-56 min-h-[80vh] flex flex-col justify-center">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:28px_28px] pointer-events-none opacity-60" />
-          <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none" />
-          <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
+        <div ref={section2Ref} className="relative z-10 w-full overflow-hidden bg-ink">
+          <motion.div style={{ y: s2Y }} className="relative w-full">
+            <motion.div style={{ opacity: s2Opacity }} className="absolute inset-0 z-50 bg-black pointer-events-none" />
+            
+            <section className="relative text-white py-40 md:py-56 min-h-[80vh] flex flex-col justify-center">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:28px_28px] pointer-events-none opacity-60" />
+              <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none" />
+              <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
 
-          <div className="max-w-5xl mx-auto px-4 text-center relative z-10 w-full mt-24">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={{
-                hidden: {},
-                visible: {
-                  transition: { staggerChildren: 0.2 }
-                }
-              }}
-            >
-              <motion.h2 
-                variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
-                className="text-5xl md:text-7xl lg:text-[6.5rem] font-nixie leading-[1.05] tracking-tight mb-12"
-              >
-                Enterprise-grade<br />
-                <span className="text-white/40">AI visibility.</span>
-              </motion.h2>
-              <motion.p 
-                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
-                className="text-xl md:text-3xl text-white/60 font-light max-w-3xl mx-auto leading-relaxed"
-              >
-                See exactly how ChatGPT, Claude, and Google AI Overview rank your brand. Be-Visible reveals your share of voice, extracts AI sentiment, and shows you exactly what it takes to own the AI recommendations in your industry.
-              </motion.p>
-            </motion.div>
-          </div>
-        </section>
+              <div className="max-w-5xl mx-auto px-4 text-center relative z-10 w-full mt-24">
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-100px" }}
+                  variants={{
+                    hidden: {},
+                    visible: {
+                      transition: { staggerChildren: 0.2 }
+                    }
+                  }}
+                >
+                  <motion.h2 
+                    variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
+                    className="text-5xl md:text-7xl lg:text-[6.5rem] font-nixie leading-[1.05] tracking-tight mb-12"
+                  >
+                    Enterprise-grade<br />
+                    <span className="text-white/40">AI visibility.</span>
+                  </motion.h2>
+                  <motion.p 
+                    variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
+                    className="text-xl md:text-3xl text-white/60 font-light max-w-3xl mx-auto leading-relaxed"
+                  >
+                    See exactly how ChatGPT, Claude, and Google AI Overview rank your brand. Be-Visible reveals your share of voice, extracts AI sentiment, and shows you exactly what it takes to own the AI recommendations in your industry.
+                  </motion.p>
+                </motion.div>
+              </div>
+            </section>
+            
+          </motion.div>
+        </div>
 
         {/* ── SECTION 3: ROADMAP ───────────────────────────────────────── */}
         <section className="relative bg-surface-50 overflow-hidden">
