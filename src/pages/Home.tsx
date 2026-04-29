@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionTemplate } from "motion/react";
+import { motion, AnimatePresence, useScroll, useTransform, useSpring } from "motion/react";
 import { Hexagon } from "../components/Hexagon";
 import { useNavigate } from "react-router-dom";
 import Grainient from "../components/Grainient";
@@ -88,75 +88,6 @@ const RoadmapStage = ({ step, title, desc, items, isLast }: { step: string; titl
 
 const pricingContainerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.1 } } };
 const pricingCardVariants = { hidden: { opacity: 0, y: 60, scale: 0.96, rotateX: 5 }, visible: { opacity: 1, y: 0, scale: 1, rotateX: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } };
-
-// ─── STICKY WORD REVEAL SECTION ────────────────────────────────────────────
-
-const WordReveal = ({ children, progress, index, totalWords, isSecondary = false }: any) => {
-  const step = 0.8 / totalWords;
-  const start = 0.05 + (index * step);
-  const end = start + step * 2.5;
-
-  const y = useTransform(progress, [start, end], ["100%", "0%"]);
-  const clipBottom = useTransform(progress, [start, end], [110, -20]);
-  const clipPath = useMotionTemplate`inset(-20% 0 ${clipBottom}% 0)`;
-  const opacity = useTransform(progress, [start, end], [0, 1]);
-
-  return (
-    <span className="relative inline-flex overflow-hidden align-bottom pb-1 pt-1 -mb-1">
-      <motion.span 
-        style={{ y, clipPath, opacity }}
-        className={`inline-block will-change-transform ${isSecondary ? 'text-white/40' : ''}`}
-      >
-        {children}
-      </motion.span>
-    </span>
-  );
-};
-
-const StickyRevealSection = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
-  const headingWords1 = "Enterprise-grade".split(" ");
-  const headingWords2 = "AI visibility.".split(" ");
-  const pWords = "See exactly how ChatGPT, Claude, and Google AI Overview rank your brand. Be-Visible reveals your share of voice, extracts AI sentiment, and shows you exactly what it takes to own the AI recommendations in your industry.".split(" ");
-  
-  const totalWords = headingWords1.length + headingWords2.length + pWords.length;
-  let globalIndex = 0;
-
-  return (
-    <section ref={containerRef} className="relative h-[200vh] w-full text-white">
-      {/* Sticky container that stays in viewport */}
-      <div className="sticky top-0 h-screen flex flex-col justify-center items-center overflow-hidden">
-        
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:28px_28px] pointer-events-none opacity-60" />
-        <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none" />
-        <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
-
-        <div className="max-w-5xl mx-auto px-4 text-center relative z-10 w-full mt-24">
-          <h2 className="text-5xl md:text-7xl lg:text-[6.5rem] font-nixie leading-[1.05] tracking-tight mb-12">
-            {headingWords1.map((w, i) => (
-              <React.Fragment key={`h1-${i}`}><WordReveal progress={scrollYProgress} index={globalIndex++} totalWords={totalWords}>{w}</WordReveal>{' '}</React.Fragment>
-            ))}
-            <br />
-            {headingWords2.map((w, i) => (
-              <React.Fragment key={`h2-${i}`}><WordReveal progress={scrollYProgress} index={globalIndex++} totalWords={totalWords} isSecondary>{w}</WordReveal>{' '}</React.Fragment>
-            ))}
-          </h2>
-          
-          <p className="text-xl md:text-3xl text-white/60 font-light max-w-3xl mx-auto leading-relaxed">
-            {pWords.map((w, i) => (
-              <React.Fragment key={`p-${i}`}><WordReveal progress={scrollYProgress} index={globalIndex++} totalWords={totalWords}>{w}</WordReveal>{' '}</React.Fragment>
-            ))}
-          </p>
-        </div>
-      </div>
-    </section>
-  );
-};
 
 // ───────────────────────────────────────────────────────────────────────────
 
@@ -275,7 +206,39 @@ export const Home = () => {
           <motion.div style={{ y: s2Y }} className="relative w-full">
             <motion.div style={{ opacity: s2Opacity }} className="absolute inset-0 z-50 bg-black pointer-events-none" />
             
-            <StickyRevealSection />
+            <section className="relative text-white py-40 md:py-56 min-h-[80vh] flex flex-col justify-center">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:28px_28px] pointer-events-none opacity-60" />
+              <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none" />
+              <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
+
+              <div className="max-w-5xl mx-auto px-4 text-center relative z-10 w-full mt-24">
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-100px" }}
+                  variants={{
+                    hidden: {},
+                    visible: {
+                      transition: { staggerChildren: 0.2 }
+                    }
+                  }}
+                >
+                  <motion.h2 
+                    variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
+                    className="text-5xl md:text-7xl lg:text-[6.5rem] font-nixie leading-[1.05] tracking-tight mb-12"
+                  >
+                    Enterprise-grade<br />
+                    <span className="text-white/40">AI visibility.</span>
+                  </motion.h2>
+                  <motion.p 
+                    variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
+                    className="text-xl md:text-3xl text-white/60 font-light max-w-3xl mx-auto leading-relaxed"
+                  >
+                    See exactly how ChatGPT, Claude, and Google AI Overview rank your brand. Be-Visible reveals your share of voice, extracts AI sentiment, and shows you exactly what it takes to own the AI recommendations in your industry.
+                  </motion.p>
+                </motion.div>
+              </div>
+            </section>
             
           </motion.div>
         </div>
