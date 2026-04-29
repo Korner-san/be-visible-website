@@ -321,7 +321,7 @@ export default function App() {
 
   return (
     <BookingContext.Provider value={{ openBooking }}>
-      <div className="min-h-screen bg-white selection:bg-black selection:text-white relative overflow-hidden">
+      <div className="min-h-screen bg-white selection:bg-black selection:text-white relative overflow-clip">
         {/* Subtle Background Hexagons */}
         <div className="absolute inset-0 pointer-events-none opacity-[0.02] z-0">
           <div className="absolute top-20 left-10"><Hexagon size={120} outline className="text-ink" /></div>

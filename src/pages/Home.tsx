@@ -96,6 +96,34 @@ const platformContainerVariants = {
   visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 1.4, ease: [0.16, 1, 0.3, 1] } }
 };
 
+const rawTokens = "See exactly how ChatGPT, Claude, and Google AI Overview rank your brand. Be-Visible reveals your share of voice, extracts AI sentiment, and shows you exactly what it takes to own the AI recommendations in your industry.".split(" ");
+const totalWords = rawTokens.filter(t => t !== "<br>").length;
+
+const NativeWordReveal = ({ word, index, total, progress }: { word: string, index: number, total: number, progress: any }) => {
+  const start = index / total;
+  const end = (index + 1) / total;
+  
+  // y physical movement
+  const y = useTransform(progress, [start, end], ["100%", "0%"]);
+  
+  // clip-path mathematical mapping based on the exact string-tune reference
+  const wordProgress = useTransform(progress, [start, end], [0, 1]);
+  const clipPath = useTransform(wordProgress, (val) => {
+    // clamp between 0 and 1 just in case, though framer-motion does it
+    const clampedVal = Math.max(0, Math.min(1, val));
+    return `inset(-15% 0 calc(115% - ${clampedVal} * 130%) 0)`;
+  });
+  
+  return (
+    // Parent wrapper with overflow-hidden as requested
+    <span className="inline-block relative overflow-hidden pb-2 -mb-2">
+      <motion.span style={{ y, clipPath }} className="inline-block will-change-transform">
+        {word}
+      </motion.span>
+    </span>
+  );
+};
+
 export const Home = () => {
   const navigate = useNavigate();
   const { openBooking } = useBooking();
@@ -111,10 +139,24 @@ export const Home = () => {
   const section2Ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress: s2Progress } = useScroll({
     target: section2Ref,
-    offset: ["start end", "end end"]
+    offset: ["start end", "start start"]
   });
-  const s2Y = useTransform(s2Progress, [0, 1], ["-50%", "0%"]);
+  const s2Y = useTransform(s2Progress, [0, 1], ["-50vh", "0vh"]);
   const s2Opacity = useTransform(s2Progress, [0, 1], [1, 0]);
+
+  // NATIVE TEXT REVEAL PROGRESS
+  const { scrollYProgress: nativeProgress } = useScroll({
+    target: section2Ref,
+    offset: ["start start", "end end"]
+  });
+
+  const section3Ref = useRef<HTMLElement>(null);
+  const { scrollYProgress: s3Progress } = useScroll({
+    target: section3Ref,
+    offset: ["start end", "start start"]
+  });
+  const s3Y = useTransform(s3Progress, [0, 1], ["-50vh", "0vh"]);
+  const s3Opacity = useTransform(s3Progress, [0, 1], [1, 0]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -202,89 +244,80 @@ export const Home = () => {
         </section>
 
         {/* ── SECTION 2: CONTEXT ────────────────────────────────────────────── */}
-        <div ref={section2Ref} className="relative z-10 w-full overflow-hidden bg-ink">
-          <motion.div style={{ y: s2Y }} className="relative w-full">
-            <motion.div style={{ opacity: s2Opacity }} className="absolute inset-0 z-50 bg-black pointer-events-none" />
+        <div ref={section2Ref} className="relative z-10 w-full overflow-clip bg-black">
+          <motion.div style={{ y: s2Y }} className="relative w-full h-[400vh]">
+            <motion.div style={{ opacity: s2Opacity }} className="absolute inset-0 z-[100] bg-black pointer-events-none" />
             
-            <section className="relative text-white py-40 md:py-56 min-h-[80vh] flex flex-col justify-center">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:28px_28px] pointer-events-none opacity-60" />
-              <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none" />
-              <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
-
-              <div className="max-w-5xl mx-auto px-4 text-center relative z-10 w-full mt-24">
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: "-100px" }}
-                  variants={{
-                    hidden: {},
-                    visible: {
-                      transition: { staggerChildren: 0.2 }
-                    }
-                  }}
-                >
-                  <motion.h2 
-                    variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
-                    className="text-5xl md:text-7xl lg:text-[6.5rem] font-nixie leading-[1.05] tracking-tight mb-12"
-                  >
-                    Enterprise-grade<br />
-                    <span className="text-white/40">AI visibility.</span>
-                  </motion.h2>
-                  <motion.p 
-                    variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
-                    className="text-xl md:text-3xl text-white/60 font-light max-w-3xl mx-auto leading-relaxed"
-                  >
-                    See exactly how ChatGPT, Claude, and Google AI Overview rank your brand. Be-Visible reveals your share of voice, extracts AI sentiment, and shows you exactly what it takes to own the AI recommendations in your industry.
-                  </motion.p>
-                </motion.div>
+            <div className="sticky top-0 w-full h-screen flex flex-col items-start justify-center text-white px-4 md:px-12 max-w-7xl mx-auto">
+              <h2 className="text-3xl md:text-5xl font-light text-left mb-8 md:mb-10 w-full leading-[1.2] z-10 opacity-90">
+                Enterprise-grade AI visibility.
+              </h2>
+              <div className="flex flex-wrap justify-start gap-x-3 gap-y-0 text-2xl md:text-4xl font-light w-full text-left leading-[1.1] z-10">
+                {(() => {
+                  let wordIndex = 0;
+                  return rawTokens.map((token, i) => {
+                    if (token === "<br>") return <div key={i} className="w-full h-4 md:h-8" />;
+                    const currentIndex = wordIndex++;
+                    return (
+                      <NativeWordReveal 
+                        key={i} 
+                        word={token} 
+                        index={currentIndex} 
+                        total={totalWords} 
+                        progress={nativeProgress} 
+                      />
+                    );
+                  });
+                })()}
               </div>
-            </section>
-            
+            </div>
           </motion.div>
         </div>
 
         {/* ── SECTION 3: ROADMAP ───────────────────────────────────────── */}
-        <section className="relative bg-surface-50 overflow-hidden">
-          <div className="absolute inset-0 bg-dot-pattern opacity-[0.6] mix-blend-multiply pointer-events-none" />
-          <div className="absolute inset-0 -z-20 opacity-[0.04]">
-            <Grainient color1="#000000" color2="#ffffff" color3="#808080" timeSpeed={0.05} warpStrength={0.22} zoom={2.2} />
-          </div>
-
-          <div className="section-container pt-32 md:pt-48">
-            <div className="text-center mb-16 md:mb-24 px-4">
-              <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-6">Process</span>
-              <h2 className="text-5xl md:text-7xl font-nixie text-ink tracking-tight">How we build our strategies.</h2>
-              <div className="w-px h-24 bg-ink/10 mx-auto mt-12 mb-4"></div>
-            </div>
+        <section ref={section3Ref} className="relative bg-surface-50 overflow-clip">
+          <motion.div style={{ y: s3Y }} className="relative w-full">
+            <motion.div style={{ opacity: s3Opacity }} className="absolute inset-0 z-[100] bg-black pointer-events-none" />
             
-            <div className="max-w-3xl mx-auto w-full relative group">
-              <ScrollStack useWindowScroll={true}>
-                <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-center transition-colors hover:border-ink/10">
-                    <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Phase 1</span>
-                    <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">Analyzing data</h3>
-                    <p className="text-lg md:text-xl text-ink/60 font-light leading-relaxed max-w-lg">
-                      We deeply learn about your brand and positioning, then rigorously map your entire competitive landscape to find your structural gaps.
-                    </p>
-                </ScrollStackItem>
-
-                <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-center transition-colors hover:border-ink/10">
-                    <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Phase 2</span>
-                    <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">Create prompts</h3>
-                    <p className="text-lg md:text-xl text-ink/60 font-light leading-relaxed max-w-lg">
-                      We systematically execute and define the highest-value test prompts your customers are using across all major AI models right now.
-                    </p>
-                </ScrollStackItem>
-
-                <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-center transition-colors hover:border-ink/10">
-                    <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Phase 3</span>
-                    <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">Creating a full visibility dashboard</h3>
-                    <p className="text-lg md:text-xl text-ink/60 font-light leading-relaxed max-w-lg">
-                      We finalize your ranking framework into a living dashboard that tracks your AI presence, uncovers gaps, and guides your ongoing content strategy.
-                    </p>
-                </ScrollStackItem>
-              </ScrollStack>
+            <div className="absolute inset-0 bg-dot-pattern opacity-[0.6] mix-blend-multiply pointer-events-none" />
+            <div className="absolute inset-0 -z-20 opacity-[0.04]">
+              <Grainient color1="#000000" color2="#ffffff" color3="#808080" timeSpeed={0.05} warpStrength={0.22} zoom={2.2} />
             </div>
-          </div>
+
+            <div className="section-container pt-32 md:pt-48 pb-32">
+              <div className="text-center mb-16 md:mb-24 px-4">
+                <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-6">Process</span>
+                <h2 className="text-5xl md:text-7xl font-nixie text-ink tracking-tight">How we build our strategies.</h2>
+                <div className="w-px h-24 bg-ink/10 mx-auto mt-12 mb-4"></div>
+              </div>
+              
+              <div className="max-w-3xl mx-auto w-full relative group">
+                <ScrollStack useWindowScroll={true}>
+                  <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-center transition-colors hover:border-ink/10">
+                      <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Phase 1</span>
+                      <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">Analyzing data</h3>
+                      <p className="text-lg md:text-xl text-ink/60 font-light leading-relaxed max-w-lg">
+                        We deeply learn about your brand and positioning, then rigorously map your entire competitive landscape to find your structural gaps.
+                      </p>
+                  </ScrollStackItem>
+                  <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-center transition-colors hover:border-ink/10">
+                      <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Phase 2</span>
+                      <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">Content synthesis</h3>
+                      <p className="text-lg md:text-xl text-ink/60 font-light leading-relaxed max-w-lg">
+                        We isolate the exact entities, citations, and semantic gaps preventing AI models from recommending you.
+                      </p>
+                  </ScrollStackItem>
+                  <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-center transition-colors hover:border-ink/10">
+                      <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Phase 3</span>
+                      <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">Technical alignment</h3>
+                      <p className="text-lg md:text-xl text-ink/60 font-light leading-relaxed max-w-lg">
+                        We deploy code-level optimizations to ensure AI crawlers ingest your narrative perfectly, exactly when it matters.
+                      </p>
+                  </ScrollStackItem>
+                </ScrollStack>
+              </div>
+            </div>
+          </motion.div>
         </section>
 
         {/* ── SECTION 4: PRODUCT SHOWCASE ───────────────────────────────────────────── */}
