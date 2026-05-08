@@ -96,7 +96,7 @@ const platformContainerVariants = {
   visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 1.4, ease: [0.16, 1, 0.3, 1] } }
 };
 
-const rawTokens = "See exactly how ChatGPT, Claude, and Google AI Overview rank your brand. Be-Visible reveals your share of voice, extracts AI sentiment, and shows you exactly what it takes to own the AI recommendations in your industry.".split(" ");
+const rawTokens = "Before they visit your website, before they compare alternatives, AI may already be shaping who they trust. AI is becoming the layer between your brand and your next customer.".split(" ");
 const totalWords = rawTokens.filter(t => t !== "<br>").length;
 
 const NativeWordReveal = ({ word, index, total, progress }: { word: string, index: number, total: number, progress: any }) => {
@@ -158,6 +158,29 @@ export const Home = () => {
   const s3Y = useTransform(s3Progress, [0, 1], ["-50vh", "0vh"]);
   const s3Opacity = useTransform(s3Progress, [0, 1], [1, 0]);
 
+  // ── SCROLL STACK ACTIVE CARD INDEX ──────────────────────────────────────
+  const [activeCardIndex, setActiveCardIndex] = useState(0);
+  useEffect(() => {
+    const handleScroll = () => {
+      const cards = Array.from(document.querySelectorAll('.scroll-stack-card')) as HTMLElement[];
+      if (!cards.length) return;
+      const viewportMid = window.innerHeight * 0.52;
+      let best = 0;
+      let bestDist = Infinity;
+      cards.forEach((card, i) => {
+        const rect = card.getBoundingClientRect();
+        const cardMid = rect.top + rect.height / 2;
+        const dist = Math.abs(cardMid - viewportMid);
+        if (dist < bestDist) { bestDist = dist; best = i; }
+      });
+      setActiveCardIndex(best);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  // ────────────────────────────────────────────────────────────────────────
+
   useEffect(() => {
     const timer = setInterval(() => {
       setModelIndex((prev) => (prev + 1) % models.length);
@@ -176,7 +199,7 @@ export const Home = () => {
     >
       <main>
         {/* ── HERO (LOCKED) ─────────────────────────────────────────────────── */}
-        <section className="relative z-20 h-screen bg-black text-white text-center overflow-hidden flex items-center justify-center pt-20">
+        <section className="relative z-20 h-screen bg-black text-white overflow-hidden pt-20">
           <div className="absolute inset-0">
             <Grainient
               color1="#ffffff"
@@ -203,43 +226,50 @@ export const Home = () => {
               zoom={0.9}
             />
           </div>
-          <div className="max-w-3xl mx-auto relative z-10 pointer-events-none px-4">
-            <div className="pointer-events-auto relative">
-              <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 -z-10 pointer-events-none opacity-[0.85] blur-[100px] bg-radial-[circle_at_center,_black_0%,_transparent_80%] h-[150%] w-[150%] left-1/2 -translate-x-1/2" />
-              <h1 className="text-4xl md:text-6xl font-nixie mb-8 tracking-tighter drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
-                READY TO BE <br />
-                <span className="text-white border-2 border-white px-3 inline-block mt-2">VISIBLE?</span>
+          <div className="absolute inset-0 z-10 pointer-events-none px-6 pb-10 pt-24 md:px-12 md:pb-16 md:pt-28 lg:px-16">
+            <div className="relative h-full max-w-7xl mx-auto">
+              <div className="absolute inset-x-[-10%] top-1/2 -translate-y-1/2 -z-10 pointer-events-none opacity-[0.85] blur-[100px] bg-radial-[circle_at_center,_black_0%,_transparent_80%] h-[150%]" />
+              <div className="absolute -right-32 top-0 -z-10 h-[22rem] w-[42rem] pointer-events-none opacity-[0.78] blur-[96px] bg-radial-[circle_at_center,_black_0%,_transparent_78%]" />
+              <div className="absolute -left-36 bottom-0 -z-10 h-[24rem] w-[44rem] pointer-events-none opacity-[0.82] blur-[104px] bg-radial-[circle_at_center,_black_0%,_transparent_78%]" />
+              {/* Right headline — upper-right, atmospheric secondary statement */}
+              <h1 className="absolute right-0 top-[6vh] text-right text-3xl md:text-5xl font-nixie tracking-tighter drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)] opacity-70">
+                READY TO BE
+                <span className="border-2 border-current px-3 block w-fit ml-auto mt-2">VISIBLE?</span>
               </h1>
-              <p className="text-lg mb-4 font-nixie opacity-90 max-w-2xl mx-auto flex flex-wrap items-center justify-center gap-x-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
-                Optimizing your brand for
-                <span className="relative inline-block min-w-[140px] text-left h-[1.2em]">
-                  <AnimatePresence mode="wait">
-                    <motion.span
-                      key={models[modelIndex]}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.4, ease: "easeOut" }}
-                      className="absolute inset-0 whitespace-nowrap"
-                    >
-                      {models[modelIndex]}
-                    </motion.span>
-                  </AnimatePresence>
-                </span>
-              </p>
-              
-              <p className="text-sm mb-12 font-light opacity-80 max-w-xl mx-auto leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
-                Be-Visible is the intelligence platform for the zero-click era. We track how AI systems talk about your brand, analyze your competitive position, and execute the strategy to dominate AI-generated answers.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button 
-                  onClick={() => openBooking("AI Visibility Strategy")}
-                  className="bg-white text-black px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-black hover:text-white border-2 border-white transition-all"
-                >
-                  Book a Strategic Call
-                </button>
-              </div>
             </div>
+          </div>
+
+          {/* Left content block — deep lower-left, strong negative space from headline */}
+          <div className="absolute bottom-[14vh] left-16 md:left-20 lg:left-24 z-20 max-w-2xl text-left pointer-events-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
+            <p className="text-xs md:text-sm mb-5 font-nixie opacity-70 flex flex-wrap items-center gap-x-2 tracking-widest uppercase">
+              Optimizing your brand for
+              <span className="relative inline-block min-w-[160px] text-left h-[1.2em]">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={models[modelIndex]}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    className="absolute inset-0 whitespace-nowrap normal-case"
+                  >
+                    {models[modelIndex]}
+                  </motion.span>
+                </AnimatePresence>
+              </span>
+            </p>
+            <p className="text-3xl md:text-4xl lg:text-5xl font-nixie opacity-95 leading-tight mb-5 whitespace-nowrap">
+              Become the brand AI recommends.
+            </p>
+            <p className="text-base md:text-lg font-light opacity-70 max-w-lg leading-relaxed mb-9">
+              See how AI talks about your brand, where competitors win,<br className="hidden md:block" /> and what needs to change.
+            </p>
+            <button 
+              onClick={() => openBooking("AI Visibility Strategy")}
+              className="bg-white text-black px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-black hover:text-white border-2 border-white transition-all"
+            >
+              BOOK A STRATEGIC CALL
+            </button>
           </div>
         </section>
 
@@ -250,7 +280,7 @@ export const Home = () => {
             
             <div className="sticky top-0 w-full h-screen flex flex-col items-start justify-center text-white px-4 md:px-12 max-w-7xl mx-auto">
               <h2 className="text-3xl md:text-5xl font-light text-left mb-8 md:mb-10 w-full leading-[1.2] z-10 opacity-90">
-                Enterprise-grade AI visibility.
+                The layer your customers<br />don’t see
               </h2>
               <div className="flex flex-wrap justify-start gap-x-3 gap-y-0 text-2xl md:text-4xl font-light w-full text-left leading-[1.1] z-10">
                 {(() => {
@@ -275,7 +305,7 @@ export const Home = () => {
         </div>
 
         {/* ── SECTION 3: ROADMAP ───────────────────────────────────────── */}
-        <section ref={section3Ref} className="relative bg-surface-50 overflow-clip">
+        <section ref={section3Ref} className="relative bg-[#F4F4F2] overflow-clip">
           <motion.div style={{ y: s3Y }} className="relative w-full">
             <motion.div style={{ opacity: s3Opacity }} className="absolute inset-0 z-[100] bg-black pointer-events-none" />
             
@@ -291,28 +321,79 @@ export const Home = () => {
                 <div className="w-px h-24 bg-ink/10 mx-auto mt-12 mb-4"></div>
               </div>
               
-              <div className="max-w-3xl mx-auto w-full relative group">
-                <ScrollStack useWindowScroll={true}>
-                  <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-center transition-colors hover:border-ink/10">
-                      <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Phase 1</span>
-                      <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">Analyzing data</h3>
-                      <p className="text-lg md:text-xl text-ink/60 font-light leading-relaxed max-w-lg">
+              <div className="max-w-5xl mx-auto w-full relative group">
+                {/* ── PROGRESS RAIL ───────────────────────────────────────── */}
+                <div className="hidden xl:block absolute -left-24 top-[calc(20vh+24px)] bottom-[24rem] w-16 pointer-events-none z-10">
+                  <div className="sticky top-[calc(30vh+24px)] flex flex-col items-center gap-6">
+                    <span className="font-nixie text-5xl text-ink/50 tabular-nums transition-all duration-300">
+                      {String(activeCardIndex + 1).padStart(2, '0')}
+                    </span>
+                    <div className="relative h-[22rem] w-8">
+                      <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-gradient-to-b from-ink/30 via-ink/12 to-ink/5" />
+                      <div className="absolute inset-x-0 top-28 bottom-2 flex flex-col items-center justify-between">
+                        {[0, 1, 2].map((i) => (
+                          <div
+                            key={i}
+                            className={`rounded-full transition-all duration-300 ${
+                              i === activeCardIndex
+                                ? 'w-2 h-2 bg-ink/60 ring-2 ring-ink/10 ring-offset-2 ring-offset-[#F4F4F2]'
+                                : 'w-1.5 h-1.5 bg-ink/20'
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* ──────────────────────────────────────────────────────── */}
+                <ScrollStack useWindowScroll={true} itemStackDistance={15}>
+                  <ScrollStackItem itemClassName="bg-white border border-ink/10 flex flex-col justify-end transition-colors hover:border-ink/20 md:min-h-[430px] md:p-16 lg:p-20 overflow-hidden">
+                    <motion.div
+                      initial={{ opacity: 0, x: 24 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.55, ease: "easeOut" }}
+                      viewport={{ once: false, amount: 0.35 }}
+                      className="flex flex-col"
+                    >
+                      <div className="w-8 h-px bg-ink/20 mb-8" />
+                      <span className="text-[10px] uppercase font-semibold tracking-[0.35em] text-ink/35 block mb-5">01 — Discovery</span>
+                      <h3 className="text-3xl md:text-4xl lg:text-5xl font-nixie text-ink tracking-tight mb-6">Analyzing data</h3>
+                      <p className="text-base md:text-lg text-ink/55 font-light leading-relaxed max-w-xl">
                         We deeply learn about your brand and positioning, then rigorously map your entire competitive landscape to find your structural gaps.
                       </p>
+                    </motion.div>
                   </ScrollStackItem>
-                  <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-center transition-colors hover:border-ink/10">
-                      <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Phase 2</span>
-                      <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">Content synthesis</h3>
-                      <p className="text-lg md:text-xl text-ink/60 font-light leading-relaxed max-w-lg">
+                  <ScrollStackItem itemClassName="bg-white border border-ink/10 flex flex-col justify-end transition-colors hover:border-ink/20 md:min-h-[430px] md:p-16 lg:p-20 overflow-hidden">
+                    <motion.div
+                      initial={{ opacity: 0, x: 24 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.55, ease: "easeOut" }}
+                      viewport={{ once: false, amount: 0.35 }}
+                      className="flex flex-col"
+                    >
+                      <div className="w-8 h-px bg-ink/20 mb-8" />
+                      <span className="text-[10px] uppercase font-semibold tracking-[0.35em] text-ink/35 block mb-5">02 — Synthesis</span>
+                      <h3 className="text-3xl md:text-4xl lg:text-5xl font-nixie text-ink tracking-tight mb-6">Content synthesis</h3>
+                      <p className="text-base md:text-lg text-ink/55 font-light leading-relaxed max-w-xl">
                         We isolate the exact entities, citations, and semantic gaps preventing AI models from recommending you.
                       </p>
+                    </motion.div>
                   </ScrollStackItem>
-                  <ScrollStackItem itemClassName="bg-white border border-ink/[0.06] flex flex-col justify-center transition-colors hover:border-ink/10">
-                      <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-ink/30 block mb-4">Phase 3</span>
-                      <h3 className="text-3xl md:text-4xl font-nixie text-ink tracking-tight mb-4">Technical alignment</h3>
-                      <p className="text-lg md:text-xl text-ink/60 font-light leading-relaxed max-w-lg">
+                  <ScrollStackItem itemClassName="bg-white border border-ink/10 flex flex-col justify-end transition-colors hover:border-ink/20 md:min-h-[430px] md:p-16 lg:p-20 overflow-hidden">
+                    <motion.div
+                      initial={{ opacity: 0, x: 24 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.55, ease: "easeOut" }}
+                      viewport={{ once: false, amount: 0.35 }}
+                      className="flex flex-col"
+                    >
+                      <div className="w-8 h-px bg-ink/20 mb-8" />
+                      <span className="text-[10px] uppercase font-semibold tracking-[0.35em] text-ink/35 block mb-5">03 — Alignment</span>
+                      <h3 className="text-3xl md:text-4xl lg:text-5xl font-nixie text-ink tracking-tight mb-6">Technical alignment</h3>
+                      <p className="text-base md:text-lg text-ink/55 font-light leading-relaxed max-w-xl">
                         We deploy code-level optimizations to ensure AI crawlers ingest your narrative perfectly, exactly when it matters.
                       </p>
+                    </motion.div>
                   </ScrollStackItem>
                 </ScrollStack>
               </div>
