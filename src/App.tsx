@@ -10,7 +10,7 @@ import { Solutions } from "./pages/Solutions";
 import Navbar from "./components/Navbar";
 import PixelBlast from "./components/PixelBlast";
 
-const MAINTENANCE_MODE = true;
+const MAINTENANCE_MODE = import.meta.env.PROD;
 
 const MaintenanceScreen = () => {
   return (
