@@ -10,6 +10,26 @@ import { Solutions } from "./pages/Solutions";
 import Navbar from "./components/Navbar";
 import PixelBlast from "./components/PixelBlast";
 
+const MAINTENANCE_MODE = true;
+
+const MaintenanceScreen = () => {
+  return (
+    <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-6 text-center font-nixie selection:bg-white selection:text-black">
+      <div className="max-w-xl mx-auto flex flex-col items-center gap-6">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl tracking-tight opacity-95">
+          Updating Be-Visible.ai
+        </h1>
+        <p className="text-lg md:text-xl font-light opacity-80 leading-relaxed font-sans">
+          We’re refining the website and improving the experience. The site will be back online shortly.
+        </p>
+        <div className="w-12 h-px bg-white/20 mt-4 mb-2" />
+        <p className="text-sm font-light opacity-50 uppercase tracking-widest font-sans">
+          Thank you for your patience.
+        </p>
+      </div>
+    </div>
+  );
+};
 // Booking Context
 interface BookingContextType {
   openBooking: (plan: string) => void;
@@ -294,6 +314,10 @@ export default function App() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
+
+  if (MAINTENANCE_MODE) {
+    return <MaintenanceScreen />;
+  }
 
   const navItems = [
     {
